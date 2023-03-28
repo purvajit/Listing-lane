@@ -1,13 +1,16 @@
 <section class="footer">
 	<div class="item">
 		<h3 id="contact">CONTACT</h3>
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis officiis aut est suscipit explicabo nulla sint quod commodi pariatur vel. </p>
+		<p>Phone: 555-555-5555<br>info@listinglanee.com <br>Address: 123 ListingLane, India<br><br>Thank you for considering our real estate services. We look forward to helping you find your dream home!</p>
+
 	</div>
 	<div class="item">
 		<h3>MENU</h3>
 		<a href="#header">Home</a>
 		<a href="">About us</a>
 		<a href="">Profile</a>
+		<a href=""></a>
+		<a href=""></a>
 	</div>
 	<div class="item">
 		<h3>SOCIALS</h3>
