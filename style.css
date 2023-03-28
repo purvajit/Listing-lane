@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:ital,wght@1,300&display=swap');
 :root{
 	--colour1 :rgba(23, 36, 42, 0.665);
+	--colour2 : #3aafa9e4;
 }
-
 html{
 	scroll-behavior: smooth;
 }
@@ -12,7 +12,7 @@ body {
 	font-family: "Montserrat", sans-serif;
 	padding: 0px;
 	margin: 0px;
-	background-color: #3aafa9e4;
+	background-color: var(--colour2);
 	
 }
 .bg{
@@ -31,6 +31,8 @@ body {
 }
 
 .form_box .item {
+	display: flex;
+	flex-direction: row;
 	justify-content: center;
 
 }
@@ -55,7 +57,9 @@ form {
 	margin: 0px;
 	margin-top: 10px;
 	padding: 0px;
+	padding-bottom: 20px;
 	border-radius: 4px;
+	height: auto;
 }
 
 input[type="text"],
@@ -86,7 +90,7 @@ input[type="email"] {
 	padding: 10px 20px;
 	cursor: pointer;
 	border: 1px solid white;
-	background-color: #3aafa9e4;
+	background-color: var(--colour2);
 	border-radius: 5px;
 	font-size: 18px;
 }
@@ -105,7 +109,7 @@ header {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
-	background-color: rgba(23, 36, 42, 0.665);
+	background-color: var(--colour1);
 	color: white;
 
 
@@ -137,12 +141,12 @@ header {
 
 a:link {
 	font-weight: bold;
-	color: #3aafa9e4;
+	color: var(--colour2);
 	text-decoration: none;
 }
 
 a:visited {
-	color: #3aafa9e4;
+	color: var(--colour2);
 	text-decoration: none;
 }
 
@@ -182,7 +186,7 @@ a:hover {
 .hero .container .info h2{
 	font-size: 1.5rem;
 	margin-bottom: 1.5rem;
-	color: #3aafa9e4;
+	color: var(--colour2);
 
 }
 .hero .container .info p{
@@ -212,11 +216,10 @@ a:hover {
 	justify-content: space-evenly;
 	width: 200px;
 	align-self: center;
-	/* background-color: rgba(23, 36, 42, 0.665); */
 	border-radius: 4px;
 	
 }
-.feature:nth-child(n){
+.feature:nth-child(1){
 	/* background-image: linear-gradient(black,black) url("./images/listing.jpg"); */
 	background-image:
     linear-gradient(to bottom,rgba(0, 0, 0, 0.73),rgba(245, 246, 252, 0.52)),
@@ -224,8 +227,25 @@ a:hover {
     background-size: cover;
     color: white;
 }
+
+.feature:nth-child(2){
+	/* background-image: linear-gradient(black,black) url("./images/listing.jpg"); */
+	background-image:
+    linear-gradient(to bottom,rgba(0, 0, 0, 0.73),rgba(245, 246, 252, 0.52)),
+    url('./images/search.jpg');
+	background-size: 100% 100%;
+    color: white;
+}
+.feature:nth-child(3){
+	background-image:
+    linear-gradient(to bottom,rgba(0, 0, 0, 0.73),rgba(245, 246, 252, 0.52)),
+    url('./images/contact.jpg');
+    background-size:cover;
+	/* background-size: 100% 100%; */
+    color: white;
+}
 .feature h2{
-	color: #3aafa9e4;
+	color: var(--colour2);
 	position: relative;
 	top: 10px;
 	text-align: center;
@@ -243,13 +263,23 @@ a:hover {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
-	padding: 30px;
+	/* padding: 10px; */
 	background-color: var(--colour1);
 
 }
-.item{
-	max-width: 200px;
+.footer .item{
+	max-width: 250px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-between;
+}
+.footer .item h3{
+	color: white;
+	position: relative;
+	top: 10px;
+
+}
+.fa{
+	padding-right: 20px;
+	color: var(--colour2);
 }
