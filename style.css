@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:ital,wght@1,300&display=swap');
+:root{
+	--colour1 :rgba(23, 36, 42, 0.665);
+}
+
+html{
+	scroll-behavior: smooth;
+}
+
+
+body {
+	font-family: "Montserrat", sans-serif;
+	padding: 0px;
+	margin: 0px;
+	background-color: #3aafa9e4;
+	
+}
+.bg{
+	background: url("./images/background.png") no-repeat center / cover;
+	width: 100%;
+}
+.form_box {
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	color: white;
+	/* justify-content: space-between; */
+}
+
+.form_box .item {
+	justify-content: center;
+}
+
+.form_box .heading {
+	background: #17252A;
+	height: 50px;
+	justify-content: center;
+	border-radius: 4px;
+	padding: 0px;
+	padding-top: 20px;
+	margin: 0px;
+}
+
+
+form {
+	background: linear-gradient(rgb(23,36,42 ), rgba(222,242,241,0.86));
+	/* height: 500px; */
+	width: 500px;
+	/* background: red; */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 0px;
+	margin-top: 10px;
+	padding: 0px;
+	border-radius: 4px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+	width: 40%;
+	padding: 8px;
+	margin: 10px;
+	margin-right: 50px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	resize: vertical;
+	background-color: rgb(252, 252, 252);
+}
+
+.form_label {
+	width: 50%;
+	margin: 10px;
+	text-align: center;
+	color: white;
+	font-size: 18px;
+}
+
+
+.submit {
+	color: white;
+	padding: 10px 20px;
+	cursor: pointer;
+	border: 1px solid white;
+	background-color: #3aafa9e4;
+	border-radius: 5px;
+	font-size: 18px;
+}
+
+.submit:hover {
+	background-color: black;
+}
+
+
+
+
+
+
+
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	background-color: rgba(23, 36, 42, 0.665);
+	color: white;
+
+
+	/* vertical-align: middle; */
+}
+
+.logo {
+	margin-right: auto;
+	max-height: 54px;
+	width: auto;
+}
+
+.search {
+	margin-right: auto;
+}
+
+.nav_links {
+	padding: 0px 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: right;
+	list-style: none;
+}
+
+.nav_links li {
+	padding: 0px 20px;
+
+}
+
+a:link {
+	font-weight: bold;
+	color: #3aafa9e4;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #3aafa9e4;
+	text-decoration: none;
+}
+
+a:hover {
+	color: white;
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+
+/* hero section */
+
+.hero {
+	color: white;
+	background: url("./images/background.png") no-repeat center / cover;
+	width: 100%;
+	height: auto;
+	padding-bottom: 30px;
+}
+
+
+
+.hero .container{
+	display: flex;
+	align-items: center ;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 50%;
+}
+.hero .container .info h1{
+
+	font-size: 3rem;
+	margin-bottom: 2rem;
+}
+.hero .container .info h2{
+	font-size: 1.5rem;
+	margin-bottom: 1.5rem;
+	color: #3aafa9e4;
+
+}
+.hero .container .info p{
+	font-size: 1rem;
+	margin-bottom: 2rem;
+	max-width: 60%;
+}
+.hero .container .info a{
+	font-size: 1rem;
+	display: inline-block;
+	color: white;
+}
+
+.features_container{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	padding: 30px;
+	background-color: white;
+}
+.feature{
+	
+	height: 250px;
+	padding: 10px 30px;
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 200px;
+	align-self: center;
+	/* background-color: rgba(23, 36, 42, 0.665); */
+	border-radius: 4px;
+	
+}
+.feature:nth-child(1){
+	background: url("./images/listing.jpg") no-repeat center / cover;
+}
+.feature:nth-child(2){
+	background: url("./images/listing.jpg") no-repeat center / cover;
+}
+.feature:nth-child(2){
+	background: url("./images/listing.jpg") no-repeat center / cover;
+}
+.feature h2{
+	color: #3aafa9e4;
+	position: relative;
+	top: 10px;
+	text-align: center;
+	max-width: 200px;
+	font-weight: bold;
+}
+.feature p{
+	color: white;
+	display: inline-block;
+	text-align: center;
+	max-width: 200px;
+}
+
+.footer{	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	padding: 30px;
+	background-color: var(--colour1);
+
+}
+.item{
+	max-width: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
