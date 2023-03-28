@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("connection.php");
+// include("connection.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
 $loginstyle = "";
@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-	<?php include("./shared/header.php")?>
+	<?php include("./shared/header.php") ?>
 
 
 	<!-- <h1>Index page</h1> -->
@@ -58,9 +58,9 @@ if (!isset($_SESSION['user_id'])) {
 			<p>Contact forms that allow users to get in touch with real estate agents, schedule viewings.</p>
 		</div>
 	</section>
+	<section>hello</section>
 	<section>.</section>
-	<section>.</section>
-	<?php include("./shared/footer.php")?>
+	<?php include("./shared/footer.php") ?>
 
 </body>
 
