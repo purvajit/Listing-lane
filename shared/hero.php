@@ -1,4 +1,5 @@
-<section class="hero">
+<section class="hero_section">
+	<div class="hero">
 		<div class="container">
 			<div class="info">
 				<h1>Listing Lane</h1>
@@ -9,4 +10,5 @@
 				<a class="submit" href="#">Explore Now</a>
 			</div>
 		</div>
-	</section>
+		</div>
+</section>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("connection.php");
+include("connection2.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
 $loginstyle = "";
@@ -32,6 +33,7 @@ if (!isset($_SESSION['user_id'])) {
 	<?php include("./shared/adminheader.php") ?>
 	<?php include("./shared/hero.php") ?>
 	<?php include("./shared/feature.php") ?>
+	<?php include("./shared/display.php") ?>
 	<?php include("./shared/footer.php") ?>
 </body>
 

@@ -2,10 +2,10 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "product";
+$dbname = "property";
 
 
-if (!$product_con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) {
+if (!$property_con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) {
 	die("failed to connect");
 }
 // echo "done";
