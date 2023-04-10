@@ -61,6 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <li><a></a></li>
                 <li><a href="admin.php">Manage</a></li>
                 <li><a></a></li>
+                <li><a href="admin.php">Home</a></li>
+                <li><a></a></li>
                 <li><a href="logout.php">Logout</a></li>
                 <li><a></a></li>
                 <li><a>Hi <?php echo $_SESSION["user_id"]; ?></a></li>

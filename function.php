@@ -28,7 +28,7 @@ function fetch_all_city($property_con){
 }
 
 function fetch_by_city($property_con,$city){
-	$query = "select * from  property where city = '".$city."'";
+	$query = "select * from  property where city = '$city'";
 	$all_property = $property_con->query($query);
 	$result=array();
 	while($row=mysqli_fetch_assoc($all_property)){

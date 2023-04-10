@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:ital,wght@1,300&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:ital,wght@1,300&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:ital,wght@1,300&display=swap');
 :root {
 	/* --colour1: rgba(23, 36, 42, 0.665); */
 	/* --colour2: #ADEFD1FF; */
@@ -15,7 +15,7 @@
 	--colour2: #9A9CC2;
 	--colour3: #99BDDF;
 	--colour4: #F0E9F9;
-	--colour5: #99bddf83;
+	--colour5: #9a9cc26b;
 
 	--font: "Montserrat", sans-serif
 		/* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.488)), url("./images/bg.jpg"); */
@@ -47,13 +47,18 @@ body {
 	font-family: var(--font);
 	padding: 0px;
 	margin: 0px;
-	background-color: var(--colour2);
-	background-size: cover;
+	background-color: var(--colour3);
 	color: var(--colour2);
-	/* color: red; */
+	animation: spawn 0.5s;
+	background-image:linear-gradient(to bottom, var(--colour5), var(--colour5)), url("./images/pattern.png");
+	background-size: 20%;
+	background-repeat:repeat;
 
 }
-
+@keyframes spawn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+  }
 .bg {
 	background-color: var(--colour2);
 	width: 100%;
@@ -76,7 +81,7 @@ body {
 }
 
 .form_box .heading {
-	background: #17252A;
+	background: #2f4f75db;
 	height: 50px;
 	justify-content: center;
 	border-radius: 4px;
@@ -87,7 +92,7 @@ body {
 
 
 form {
-	background-color: var(--colour1);
+	background-color: var(--colour5);
 	width: 500px;
 	display: flex;
 	flex-direction: column;
@@ -213,8 +218,7 @@ a:hover {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	padding: 10px 50px;
-	padding-top: 50px;
+	padding: 50px;
 }
 
 .hero {
@@ -227,8 +231,6 @@ a:hover {
 	padding: 30px;
 	border-radius: 5px;
 }
-
-
 
 .hero .container {
 	display: flex;
@@ -268,6 +270,11 @@ a:hover {
 	flex-direction: row;
 	justify-content: space-evenly;
 	padding: 30px;
+	background-image:linear-gradient(to bottom, var(--colour5), var(--colour5)), url("./images/pattern3.png");
+	background-size: 10%;
+	background-repeat:repeat;
+	border: 5px solid var(--colour1);
+  	height: 400px;
 }
 
 .feature {
@@ -280,7 +287,7 @@ a:hover {
 	width: 200px;
 	align-self: center;
 	border-radius: 4px;
-
+	
 }
 
 .feature:nth-child(1) {
@@ -350,43 +357,69 @@ a:hover {
 	padding-right: 10px;
 	color: var(--colour2);
 }
-.property_display{
-	background-color:  var(--colour1);
+
+
+#property_display{
+	border: 5px solid var(--colour1);
 }
-.property_display h2{
-	color: var(--colour4);
+#property_display h2{
+	color: var(--colour1);
 	height: 30px;
 	margin: 0px;
-	padding-left: 20px;
+	padding: 20px 35px;
+	background-color: var(--colour3);
 }
+
 .properties{
 	display: flex;
 	flex-direction: row;
 	justify-content:start;
-	background-color: var(--colour2);
+	/* background-color: var(--colour2); */
 	overflow-x:scroll;
+	color: var(--colour1);
+
 }
 .property_box{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: var(--colour4);
-	color: var(--colour3);
-	padding: 20px;
+	background-color: #99bddfc3;
+	/* background-color: var(--colour4); */
+	color: var(--colour1);
+	padding: 0px;
 	margin: 30px;
 	border-radius: 5px;
 }
-.property_box:hover{
-	color: var(--colour3);
-	background-color: var(--colour4);
+.property_box .submit{
+	background-color: rgba(255, 255, 255, 0);
+	border: 0px;
+}
+.property_box .submit:hover{
+	background-color: black;
 }
 .image_box{
-	width: 250px;
+	width: 300px;
+	height: 200px;
 	align-self: center;
 	border-radius: 5px;
+	margin: 0px;
 }
 .image_box .property_image{
 	width: 100%;
-	object-fit: contain;
+	height: 100%;
+	object-fit:cover;
 	border-radius: 5px;
+}
+.pr{
+	padding: 2px 10px;
+	max-width: 280px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  	white-space: nowrap;
+}
+.contact_email{
+	font-size: 10px;
+}
+.contact_number{
+	font-size: 10px;
 }

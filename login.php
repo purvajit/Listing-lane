@@ -28,30 +28,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				$user_data = mysqli_fetch_assoc($result);
 
 				if ($user_data['password'] === $password) {
-
+					if($user_data['admin']==0){
 					$_SESSION['user_id'] = $user_data['user_id'];
 					header("Location: index.php");
-					die;
+					die;}
+					else{
+						$_SESSION['user_id'] = $user_data['user_id'];
+						header("Location: admin.php");
+						die;
+					}
 				}
 			}
 		}
-		//read from database admin table
-		$query = "select * from admin where user_id = '$user_id' limit 1";
-		$result = mysqli_query($con, $query);
-		if ($result) {
-			if ($result && mysqli_num_rows($result) > 0) {
-
-				$user_data = mysqli_fetch_assoc($result);
-
-				if ($user_data['password'] === $password) {
-
-					$_SESSION['user_id'] = $user_data['user_id'];
-					header("Location: admin.php");
-					die;
-				}
-			}
-		}
-
 		echo '<script>alert("Wrong username or password!")</script>';
 		// echo "wrong username or password!";
 	} else {
@@ -79,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 		<nav>
 			<ul class="nav_links">
-				<li><a href="index.php">Contact</a></li>
+				<li><a href="index.php #contact">Contact</a></li>
 				<li><a></a></li>
 				<li><a href="index.php">Home</a></li>
 				<li><a></a></li>
