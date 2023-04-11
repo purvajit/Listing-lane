@@ -36,3 +36,21 @@ function fetch_by_city($property_con,$city){
 	}
 	return $result;
 }
+
+
+function search($property_con,$search_str){
+
+	$query = "select * from  property 
+    WHERE 
+	`property_name` LIKE '%$search_str%'
+	OR`description` LIKE '%$search_str%'
+	OR `city` LIKE '%$search_str%'
+	OR `address` LIKE '%$search_str%'
+	OR `address_link` LIKE '%$search_str%'";
+	$all_property = $property_con->query($query);
+	$result2=array();
+	while($row=mysqli_fetch_assoc($all_property)){
+		$result2[]=$row;
+	}
+	return $result2;
+}

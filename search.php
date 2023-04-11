@@ -6,13 +6,19 @@ include("function.php"); //from function.php
 $user_data = check_login($con);
 $loginstyle = "";
 $logoutstyle = "";
-$search_page = 0;
+$search_page = 1;
 if (isset($_SESSION['user_id'])) {
 	$loginstyle = "style='display:none;'";
 }
 if (!isset($_SESSION['user_id'])) {
 	$logoutstyle = "style='display:none;'";
 }
+if(isset($_SESSION['search_str'])){
+	$array=search($property_con,$_SESSION['search_str']);
+	// print_r($array);
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +34,31 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
 	<?php include("./shared/header.php") ?>
-	<?php include("./shared/hero.php") ?>
-	<?php include("./shared/feature.php") ?>
-	<?php include("./shared/display.php") ?>
+
+
+
+	<?php if(sizeof($array)==0){
+		echo "<h1>No match found</h1>";
+	}
+	foreach($array as $row){?>
+		<img src="./uploads/<?php echo $row['image1'];?>">
+		<?php
+		echo $row['property_name'];
+		echo "<br>";
+		echo $row['description'];
+		echo "<br>";
+		echo $row['city'];
+		echo "<br>";
+		echo $row['address'];
+		echo "<br>";
+		echo $row['price'];
+		echo "<br>";
+		echo $row['contact_number'];
+		echo "<br>";
+		echo $row['contact_email'];
+		echo "<br>";
+		}?>
 	<?php include("./shared/footer.php") ?>
 
 </body>
 </html>
-<!-- <?php while($row=mysqli_fetch_assoc($all_property)){}?> -->
