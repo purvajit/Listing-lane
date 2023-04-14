@@ -11,15 +11,22 @@ include("function.php");
 // 	exit;
 // }
 
+$flag = 0;
+$user_id = $password = $euser_id = $epassword = $error = '';
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//something was posted
-	$user_id = $_POST['user_id'];
-	$password = $_POST['password'];
-
-	if (!empty($user_id) && !empty($password)) {
-
-		//read from database customer table
-		$query = "select * from customer where user_id = '$user_id' limit 1";
+	if (empty($_POST['user_id'])) {
+		$flag = 1;
+		$euser_id = "Username required";
+	}
+	if (empty($_POST['password'])) {
+		$flag = 1;
+		$epassword = "Password required";
+	} else {
+		$user_id = $_POST['user_id'];
+		$password = $_POST['password'];
+		//read from database user table
+		$query = "select * from user where user_id = '$user_id' limit 1";
 		$result = mysqli_query($con, $query);
 
 		if ($result) {
@@ -28,24 +35,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				$user_data = mysqli_fetch_assoc($result);
 
 				if ($user_data['password'] === $password) {
-					if($user_data['admin']==0){
-					$_SESSION['user_id'] = $user_data['user_id'];
-					header("Location: index.php");
-					die;}
-					else{
+					if ($user_data['admin'] == 0) {
 						$_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: admin.php");
+						header("Location: index.php");
+						die;
+					} else {
+						$_SESSION['user_id'] = $user_data['user_id'];
+						$_SESSION['admin'] = 1;
+						header("Location: index.php");
 						die;
 					}
+				} else {
+					$epassword = "Wrong password";
+					$flag = 1;
 				}
+			} else {
+				$epassword = "User not found";
+				$flag = 1;
 			}
 		}
-		echo '<script>alert("Wrong username or password!")</script>';
-		// echo "wrong username or password!";
-	} else {
-		echo '<script>alert("Wrong username or password!")</script>';
-		// echo "wrong username or password!";
 	}
+	// echo "wrong username or password!";
 }
 
 ?>
@@ -63,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body class="bg">
 	<header>
-		<img src="./images/templogo.png" alt="logo" class="logo"/>
+		<img src="./images/templogo.png" alt="logo" class="logo" />
 
 		<nav>
 			<ul class="nav_links">
@@ -79,21 +89,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-	<div class="form_box" style='height:400px;'>
-		<form class="form" name="form" method="post">
+	<div class="form_box">
+		<form method="post" action=<?php echo $_SERVER["PHP_SELF"]; ?>>
 			<h2 class="form_box heading">LOGIN</h2>
-			<a></a>
-			<a></a>
-			<div class="form_box item">
-				<label class="form_label">User Id</label>
-				<input type="text" name="user_id" value="" id="" maxlength="20" required>
-			</div>
-			<div class="form_box item">
-				<label class="form_label">Password</label>
-				<input type="password" name="password" id="" size="20" maxlength="20" required>
-			</div>
-			<div class="form_box"><input type="submit" class="submit" value="Login" required></div>
-			<div class="form_box item">New here? <a href="signup.php"> Sign up</a></div>
+			<label class="form_label">User Id</label>
+			<input type="text" name="user_id" value="<?php if ($flag == 1) {
+															echo $user_id;
+														} ?>" id="" maxlength="20">
+			<p class="error"><?php echo $euser_id; ?></p>
+			<label class="form_label">Password</label>
+			<input type="password" name="password" value="<?php if ($flag == 1) {
+																echo $password;
+															} ?>" size="20" maxlength="20">
+			<p class="error"><?php echo $epassword; ?></p>
+			<div class=""><input type="submit" class="submit" value="Login"></div>
+			<div class="">New here? <a href="signup.php"> Sign up</a></div>
 			<a></a>
 			<a></a>
 		</form>

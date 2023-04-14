@@ -1,11 +1,11 @@
 <?php
 session_start();
 include("connection.php");
-include("connection2.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
 $loginstyle = "";
 $logoutstyle = "";
+$adminstyle = "style='display:none;'";
 $search_page = 1;
 if (isset($_SESSION['user_id'])) {
 	$loginstyle = "style='display:none;'";
@@ -13,8 +13,11 @@ if (isset($_SESSION['user_id'])) {
 if (!isset($_SESSION['user_id'])) {
 	$logoutstyle = "style='display:none;'";
 }
-if(isset($_SESSION['search_str'])){
-	$array=search($property_con,$_SESSION['search_str']);
+if (isset($_SESSION['admin'])) {
+	$adminstyle = "";
+}
+if (isset($_SESSION['search_str'])) {
+	$array = search($con, $_SESSION['search_str']);
 	// print_r($array);
 }
 
@@ -34,15 +37,12 @@ if(isset($_SESSION['search_str'])){
 
 <body>
 	<?php include("./shared/header.php") ?>
-
-
-
-	<?php if(sizeof($array)==0){
+	<?php if (sizeof($array) == 0) {
 		echo "<h1>No match found</h1>";
 	}
-	foreach($array as $row){?>
-		<img src="./uploads/<?php echo $row['image1'];?>">
-		<?php
+	foreach ($array as $row) { ?>
+		<img src="./uploads/<?php echo $row['image1']; ?>" style="width:100px;">
+	<?php
 		echo $row['property_name'];
 		echo "<br>";
 		echo $row['description'];
@@ -57,8 +57,9 @@ if(isset($_SESSION['search_str'])){
 		echo "<br>";
 		echo $row['contact_email'];
 		echo "<br>";
-		}?>
+	} ?>
 	<?php include("./shared/footer.php") ?>
 
 </body>
+
 </html>

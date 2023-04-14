@@ -1,11 +1,11 @@
 <?php
 session_start();
 include("connection.php");
-include("connection2.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
 $loginstyle = "";
 $logoutstyle = "";
+$adminstyle = "style='display:none;'";
 $search_page = 0;
 if (isset($_SESSION['user_id'])) {
 	$loginstyle = "style='display:none;'";
@@ -13,6 +13,10 @@ if (isset($_SESSION['user_id'])) {
 if (!isset($_SESSION['user_id'])) {
 	$logoutstyle = "style='display:none;'";
 }
+if (isset($_SESSION['admin'])) {
+	$adminstyle = "";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -34,5 +38,7 @@ if (!isset($_SESSION['user_id'])) {
 	<?php include("./shared/footer.php") ?>
 
 </body>
+
 </html>
-<!-- <?php while($row=mysqli_fetch_assoc($all_property)){}?> -->
+<!-- <?php while ($row = mysqli_fetch_assoc($all_property)) {
+		} ?> -->

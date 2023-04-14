@@ -2,7 +2,7 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "user_login";
+$dbname = "listing lane";
 
 
 if (!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) {

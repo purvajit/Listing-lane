@@ -6,19 +6,19 @@
 	</div>
 	<div class="item">
 		<h3>MENU</h3>
-		<a href="#header">Home</a>
-		<a href="">About us</a>
-		<a href="">Profile</a>
+		<a href="index.php">Home</a>
+		<a href="index.php">About us</a>
+		<a href="index.php">Profile</a>
 		<a href=""></a>
 		<a href=""></a>
 	</div>
 	<div class="item">
 		<h3>SOCIALS</h3>
 		<div class="links">
-			<a href="#header"><i class="fa fa-google fa-2x" ></i></a>
-			<a href="#header"><i class="fa fa-brands fa-instagram fa-2x" ></i></a>
-			<a href="#header"><i class="fa fa-brands fa-twitter fa-2x" href="demo.php"></i></a>
-			<a href="#header"><i class="fa fa-facebook-square fa-2x" href="demo.php"></i></a>
+			<a href="index.php"><i class="fa fa-google fa-2x"></i></a>
+			<a href="index.php"><i class="fa fa-brands fa-instagram fa-2x"></i></a>
+			<a href="index.php"><i class="fa fa-brands fa-twitter fa-2x" ></i></a>
+			<a href="index.php"><i class="fa fa-facebook-square fa-2x" ></i></a>
 		</div>
 		<a></a>
 		<a></a>

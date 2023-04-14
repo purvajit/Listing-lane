@@ -10,5 +10,5 @@
 				<a class="submit" href="#property_display">Explore Now</a>
 			</div>
 		</div>
-		</div>
+	</div>
 </section>
