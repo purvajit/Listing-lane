@@ -1,31 +1,41 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (!empty($_POST['search_str'])) {
-        $_SESSION["search_str"] = $_POST["search_str"];
-        header("Location: search.php");
-    } else {
-        echo '<script>alert("on data")</script>';
-    }
+$isLoggedIn = false;
+$isAdmin = false;
+$search_page = 0;
+if (isset($_SESSION['user_id'])) {
+    $loginstyle = "style='display:none;'";
+    $isLoggedIn = true;
+}
+if (!isset($_SESSION['user_id'])) {
+    $logoutstyle = "style='display:none;'";
+    $isLoggedIn = false;
+}
+if (isset($_SESSION['admin'])) {
+    $adminstyle = "";
+    $isAdmin = true;
 }
 ?>
-<header id="header">
-    <img src="./images/templogo.png" alt="logo" class="logo" />
-    <form class="search_box" method="post" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-        <input type="text" name="search_str" value="<?php if ($search_page == 1) {
-                                                        echo $_SESSION["search_str"];
-                                                    } ?>" placeholder="search" maxlength="50" required>
-        <button type="submit" class="submit">
-            <span class="fa fa-search"></span>
-        </button>
-    </form>
-    <nav>
-        <ul class="nav_links">
-            <li><a href="upload.php" <?php echo $adminstyle; ?>>Upload</a></li>
-            <li><a href="index.php" <?php echo $adminstyle; ?>>Manage</a></li>
-            <li><a href="index.php#contact">Contact</a></li>
-            <li><a href="logout.php" <?php echo $logoutstyle; ?>>Logout</a></li>
-            <li><a href="login.php" <?php echo $loginstyle; ?>>Login</a></li>
-            <li><a <?php echo $logoutstyle; ?>>Hi <?php echo $_SESSION["user_id"]; ?></a></li>
-        </ul>
-    </nav>
-</header>
+
+
+<nav class="primary-nav container">
+    <div class="logo">
+        <img class="logo-image" src="./images/templogo.png" alt="Logo">
+        <a class="logo-text" href="./">Listing Lane</a>
+    </div>
+
+    <ul class="primary-navigation" id="primary-navigation" role="list" data-open="false">
+        <li><a href="newlistings.php">New</a></li>
+        <li><a href="index.php#contact">About</a></li>
+        <li><a href="index.php#contact">Contact</a></li>
+        <?php
+        if ($isLoggedIn === false) {
+            echo "<li><a href='login.php'>Login</a></li>";
+        } else {
+            echo "<li><a href='logout.php'>Logout</a></li>";
+            echo "<img class='user-image' src='https://api.dicebear.com/5.x/shapes/svg?seed=imrraaj' alt='user_image'>";
+            echo "<li><a href='#'> Welcome " . $_SESSION["user_id"] . "!</a></li>";
+        }
+        ?>
+    </ul>
+    <button class="menu-icon" id="menu"></button>
+</nav>

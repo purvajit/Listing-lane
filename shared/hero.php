@@ -7,7 +7,7 @@
 				<p>Listing Lane is your go-to destination for all your real estate needs. Our user-friendly platform and comprehensive listings make finding your dream home a breeze.
 					Our experienced real estate agents are here to guide you through every step of the process, whether you're buying or selling. Join the thousands of satisfied customers who have found their perfect home on Listing Lane.
 					Start your search today and discover the home you've been dreaming of.</p>
-				<a class="submit" href="#property_display">Explore Now</a>
+				<button>Explore Now</button>
 			</div>
 		</div>
 	</div>
