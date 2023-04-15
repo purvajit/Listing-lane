@@ -103,18 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 
 <body class="bg">
-	<header>
-		<img src="./images/templogo.png" alt="logo" class="logo" />
-
-		<nav>
-			<ul class="nav_links">
-				<li><a href="index.php">Contact</a></li>
-				<li><a></a></li>
-				<li><a href="index.php">Home</a></li>
-				<li><a></a></li>
-			</ul>
-		</nav>
-	</header>
+	<?php include('./shared/header.php') ?>
 
 
 
