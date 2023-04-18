@@ -3,7 +3,7 @@ session_start();
 include("connection.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
-
+if(isset($user_data["property_id"])){
 if (isset($_GET['dlt_id'])) {
     $dlt_id = $_GET['dlt_id'];
     $delete = mysqli_query($con, "DELETE FROM `property` WHERE `property_id`='$dlt_id'");
@@ -16,7 +16,7 @@ $all_property = $con->query($query);
 $table = array();
 while ($row = mysqli_fetch_assoc($all_property)) {
     $table[] = $row;
-}
+}}
 ?>
 
 
@@ -41,6 +41,7 @@ while ($row = mysqli_fetch_assoc($all_property)) {
 
 <body>
     <?php include("./shared/header.php") ?>
+    <?php if(isset($user_data["property_id"])){?>
     <div><?php echo "<a href='upload.php'>New</a>"; ?></div>
     <div class="box">
         <table>
@@ -65,7 +66,9 @@ while ($row = mysqli_fetch_assoc($all_property)) {
                     <td><?php echo "<a href='manage.php?dlt_id=", urlencode($id), "'>Delete</a>"; ?></td>
 
                 </tr>
-            <?php } ?>
+            <?php }}else{
+                echo"Please Login";
+                }?>
         </table>
     </div>
     <?php include("./shared/footer.php") ?>
