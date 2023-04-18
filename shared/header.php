@@ -1,13 +1,12 @@
 <?php
+
 $isLoggedIn = false;
 $isAdmin = false;
 $search_page = 0;
 if (isset($_SESSION['user_id'])) {
-    $loginstyle = "style='display:none;'";
     $isLoggedIn = true;
 }
 if (!isset($_SESSION['user_id'])) {
-    $logoutstyle = "style='display:none;'";
     $isLoggedIn = false;
 }
 if (isset($_SESSION['admin'])) {
