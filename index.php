@@ -3,7 +3,7 @@ session_start();
 include("connection.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
-$loginstyle = "";
+$loginstyl = "";
 $logoutstyle = "";
 $adminstyle = "style='display:none;'";
 
