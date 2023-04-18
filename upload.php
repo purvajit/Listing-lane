@@ -3,7 +3,7 @@ session_start();
 include("connection.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
-
+if(isset($user_data["property_id"])){
 $property_name = $property_id = $description = $city = $address = $address_link = $price = $image1 = $image2 = $contact_number = $contact_email = "";
 $eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
 $flag = 0;
@@ -107,8 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		die;
 	}
 }
-
-
+}
 ?>
 
 
@@ -126,23 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 
 <body>
-	<header>
-		<img src="./images/templogo.png" alt="logo" class="logo" />
-		<nav>
-			<ul class="nav_links">
-				<li><a></a></li>
-				<li><a href="index.php">Manage</a></li>
-				<li><a></a></li>
-				<li><a href="index.php">Home</a></li>
-				<li><a></a></li>
-				<li><a href="logout.php">Logout</a></li>
-				<li><a></a></li>
-				<li><a>Hi <?php echo $_SESSION["user_id"]; ?></a></li>
-				<!-- <li><a href="signup.php" >signup</a></li> -->
-			</ul>
-		</nav>
-	</header>
-
+	<?php include("./shared/header.php") ?>
+	<?php if(isset($user_data["property_id"])){?>
 	<div class="form_box">
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" style='width:500px;' enctype='multipart/form-data'>
 			<h2 class="form_box heading">Upload</h2>
@@ -196,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			<div class=""><a href="index.php"> Manage</a></div>
 		</form>
 	</div>
+	<?php } else{echo "Please Login"; }?>
 
 </body>
 
