@@ -1,5 +1,11 @@
 # Listing Lane
-#### LAMPT Project
----
 
--pop up for already occupy userid
+LAMPT Project by
+
+1. [Imrraaj](github.com/imrraaj) 20BCE218
+2. [Vivek](github.com/imrraaj) 20BCE226
+3. [Purvajit](github.com/imrraaj) 20BCE238
+
+[ ] In New listing show recent 10 days
+[ ] Show search bar on home page and show results on search page
+[ ]
