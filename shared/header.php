@@ -31,7 +31,7 @@ if (isset($_SESSION['admin'])) {
             echo "<li><a href='login.php'>Login</a></li>";
         } else {
             echo "<li><a href='logout.php'>Logout</a></li>";
-            echo "<img class='user-image' src='https://api.dicebear.com/5.x/shapes/svg?seed=imrraaj' alt='user_image'>";
+            echo "<img class='user-image' src='https://api.dicebear.com/5.x/shapes/svg?seed=".$_SESSION["user_id"]."' alt='user_image'>";
             echo "<li><a href='#'> Welcome " . $_SESSION["user_id"] . "!</a></li>";
         }
         ?>

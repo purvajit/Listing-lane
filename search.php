@@ -56,11 +56,10 @@ if (!empty($_GET["search_str"])) {
 		}
 	</style>
 </head>
-
 <body>
-	<?php include("./shared/header.php") ?>
 	<div class="container">
 
+		<?php include("./shared/header.php") ?>
 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 			<input type="text" name="search_str" value="<?php if (isset($search_str)) {
 															echo trim($search_str);

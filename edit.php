@@ -20,17 +20,30 @@ if (isset($user_data["user_id"]) and isset($_GET["edit_id"])) {
 
 			$property_data = mysqli_fetch_assoc($result);
 		}
-		$property_name = $property_data["property_name"];
-		$property_id = $property_data["property_id"];
-		$description = $property_data["description"];
-		$city = $property_data["city"];
-		$address = $property_data["address"];
-		$address_link = $property_data["address_link"];
-		$price = $property_data["price"];
-		$image1 = $property_data["image1"];
-		$image2 = $property_data["image2"];
-		$contact_number = $property_data["contact_number"];
-		$contact_email = $property_data["contact_email"];
+    $property_name = $property_data["property_name"];
+    $property_id = $property_data["property_id"];
+    $description = $property_data["description"];
+    $city = $property_data["city"];
+    $address = $property_data["address"];
+    $address_link = $property_data["address_link"];
+    $price = $property_data["price"];
+    $image1 = $property_data["image1"];
+    $image2 = $property_data["image2"];
+    $contact_number = $property_data["contact_number"];
+    $contact_email = $property_data["contact_email"];
+    $flag=1;
+    $dir1="uploads/".$image1;
+    $dir2="uploads/".$image2;
+    $_FILES['image1']=fopen($dir1,'r');
+    $_FILES['image2']=fopen($dir2,'r');
+}
+elseif($_SERVER['REQUEST_METHOD'] == "POST") {
+	//something was posted
+
+	
+	if(empty($_POST["property_name"]) || empty($_POST["property_id"]) || empty($_POST["description"])  || empty($_POST["city"]) || empty($_POST["address"]) || empty($_POST["address_link"]) || empty($_POST["price"]) || empty($_FILES["image1"]) || empty($_FILES["image2"]) || empty($_POST["contact_number"]) || empty($_POST["contact_email"])) {
+		$eerror = "All fields are required to be filled!";
+
 		$flag = 1;
 	} elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
 		//something was posted
@@ -137,7 +150,7 @@ if (isset($user_data["user_id"]) and isset($_GET["edit_id"])) {
 	<meta name="description" content="">
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Upload</title>
+	<title>Edit</title>
 </head>
 
 <body>
@@ -146,7 +159,7 @@ if (isset($user_data["user_id"]) and isset($_GET["edit_id"])) {
 
 	<div class="form_box">
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" style='width:500px;' enctype='multipart/form-data'>
-			<h2 class="form_box heading">Upload</h2>
+			<h2 class="form_box heading">Edit</h2>
 			<p class="error"><?php echo $eerror; ?></p>
 
 			<label class="">Property name</label>

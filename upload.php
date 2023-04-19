@@ -11,18 +11,48 @@ if (isset($user_data["user_id"])) {
 	$eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
 	$flag = 0;
 	$eerror = "";
-
-
-
-
-
-
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		//something was posted
+		$property_name = $_POST["property_name"];
+		$property_id = $_POST["property_id"];
+		$description = $_POST["description"];
+		$city = $_POST["city"];
+		$address = $_POST["address"];
+		$address_link = $_POST["address_link"];
+		$price = $_POST["price"];
+		$image1 = $property_id."image1";
+		$image2 = $property_id."image2";
+		$contact_number = $_POST["contact_number"];
+		$contact_email = $_POST["contact_email"];
+		//images
+		$uploaddir = 'uploads/';
+		$imgname=$property_id."image1". ".jpg";
+		$tempimgname=$_FILES['image1']['tmp_name'];
+		$uploadfile = $uploaddir . $imgname;
+		$imgname2=$property_id."image2".".jpg";
+		$tempimgname2=$_FILES['image2']['tmp_name'];
+		$uploadfile2 = $uploaddir . $imgname2;
 
-
-		if (empty($_POST["property_name"]) || empty($_POST["property_id"]) || empty($_POST["description"])  || empty($_POST["city"]) || empty($_POST["address"]) || empty($_POST["address_link"]) || empty($_POST["price"]) || empty($_FILES["image1"]) || empty($_FILES["image2"]) || empty($_POST["contact_number"]) || empty($_POST["contact_email"])) {
-			$eerror = "All fields are required to be filled!";
+		if (move_uploaded_file($tempimgname, $uploadfile)) {
+			echo "File is valid, and was successfully uploaded.\n";
+		} else {
+			$flag=1;
+			$eimage1="Something went wrong uploading the image";
+		}
+		if (move_uploaded_file($tempimgname2, $uploadfile2)) {
+			echo "File is valid, and was successfully uploaded.\n";
+		} else {
+			$flag=1;
+			$eimage2="Something went wrong uploading the image";
+		}
+		//property name
+		if (strlen($property_name) < 3 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $property_name)) {
+			$eproperty_name = "Invalid Name";
+			$flag = 1;
+		}
+		//property id
+		if (strlen($property_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $property_id)) {
+			$eproperty_id = "Property id should Alphanumeric with more than 3 characters.";
 			$flag = 1;
 		} else {
 			$property_name = $_POST["property_name"];
@@ -196,6 +226,10 @@ if (isset($user_data["user_id"])) {
 			<div class=""><a href="index.php"> Manage</a></div>
 		</form>
 	</div>
+
+	<?php } else {
+		echo "Please Login";
+	} ?>
 
 </body>
 

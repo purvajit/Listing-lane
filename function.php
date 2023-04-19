@@ -78,9 +78,15 @@ function search_properties_in_city_by_name($con, $search_str, $city)
 	return $result2;
 }
 
-function search_properties_by_id($con, $id)
+function search_property_by_id($con, $id)
 {
-	$query = "select * from  property where property_id = '$id'";
-	$all_property = $con->query($query);
-	return  mysqli_fetch_assoc($all_property);
+
+	$query = "select * from property where property_id = '$id' limit 1";
+
+	$result = mysqli_query($con, $query);
+	if ($result && mysqli_num_rows($result) > 0) {
+		$property = mysqli_fetch_assoc($result);
+		return $property;
+	}
+
 }
