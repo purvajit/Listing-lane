@@ -2,9 +2,7 @@
 	<div class="property_display container">
 		<h2><?php echo strtoupper($bycity["city"]); ?></h2>
 		<section class="properties container">
-			<?php foreach (fetch_by_city($con, $city) as $row) {
-				if ($count < 4) {
-					$count++;
+			<?php foreach (fetch_by_city($con, $bycity["city"]) as $row) {
 			?>
 
 				<a href="property.php?id=<?php echo $row["property_id"] ?>">
@@ -13,7 +11,7 @@
 						<div class="detail">
 							<div class="name"><?php echo ucfirst($row["property_name"]) ?></div>
 							<div class="city"><?php echo ucfirst($row["city"]); ?></div>
-							<div class="price"><i class="fa fa-rupee"></i><?php echo ucfirst($row["price"]) ?></div>
+							<div class="price">$<?php echo ucfirst($row["price"]) ?></div>
 						</div>
 					</div>
 				</a>

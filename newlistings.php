@@ -30,7 +30,7 @@ include("function.php"); //from function.php
                             <div class="detail">
                                 <div class="name"><?php echo ucfirst($row["property_name"]) ?></div>
                                 <div class="city"><?php echo ucfirst($row["city"]); ?></div>
-                                <div class="price"><i class="fa fa-rupee"></i><?php echo ucfirst($row["price"]) ?></div>
+                                <div class="price">$<?php echo ucfirst($row["price"]) ?></div>
                             </div>
                         </div>
                     </a>

@@ -59,7 +59,7 @@ function search($con, $search_str)
 
 
 
-function search_properties_in_city_by_name($con, $search_str,$city)
+function search_properties_in_city_by_name($con, $search_str, $city)
 {
 
 	$query = "select * from  property 
@@ -76,4 +76,11 @@ function search_properties_in_city_by_name($con, $search_str,$city)
 		$result2[] = $row;
 	}
 	return $result2;
+}
+
+function search_properties_by_id($con, $id)
+{
+	$query = "select * from  property where property_id = '$id'";
+	$all_property = $con->query($query);
+	return  mysqli_fetch_assoc($all_property);
 }
