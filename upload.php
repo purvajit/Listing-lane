@@ -8,17 +8,8 @@ if (isset($user_data["user_id"])) {
 	$eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
 	$flag = 0;
 	$eerror = "";
-
-
-
-
-
-
 	if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		//something was posted
-
-
-	}else{
 		$property_name = $_POST["property_name"];
 		$property_id = $_POST["property_id"];
 		$description = $_POST["description"];
@@ -230,7 +221,7 @@ if (isset($user_data["user_id"])) {
 				<p class="error"><?php echo $econtact_email; ?></p>
 
 				<div class=""><input type="submit" class="submit"></div>
-				<div class=""><a href="index.php"> Manage</a></div>
+				<div class=""><a href="manage.php"> Manage</a></div>
 			</form>
 		</div>
 	<?php } else {

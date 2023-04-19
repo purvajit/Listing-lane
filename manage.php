@@ -65,17 +65,6 @@ if (isset($_GET['dlt_id'])) {
                     <td>
                         <h4>Delete</h4>
                     </td>
-    <?php if(isset($user_data["user_id"])){?>
-    <div><?php echo "<a href='upload.php'>New</a>"; ?></div>
-    <div class="box">
-        <table>
-            <tr>
-                <td><h4>Sr.No</h4></td>
-                <td><h4>Property Id</h4></td>
-                <td><h4>Property Name</h4></td>
-                <td><h4>City</h4></td>
-                <td><h4>Edit</h4></td>
-                <td><h4>Delete</h4></td>
 
                 </tr>
                 <?php $sr = 1;
@@ -86,13 +75,13 @@ if (isset($_GET['dlt_id'])) {
                         <td><?php echo $row["property_id"]; ?></td>
                         <td><?php echo $row["property_name"]; ?></td>
                         <td><?php echo $row["city"]; ?></td>
-                        <td><?php echo "<a href='index.php'>Edit</a>"; ?></td>
+                        <td><?php echo "<a href='edit.php?edit_id=", urlencode($id), "'>Edit</a>"; ?></td>
                         <td><?php echo "<a href='manage.php?dlt_id=", urlencode($id), "'>Delete</a>"; ?></td>
                 </tr>
             <?php $sr = 1;?>
                     </tr>
             <?php }
-            }} else {
+            } else {
                 echo "Please Login";
             } ?>
             </table>
