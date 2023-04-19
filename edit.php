@@ -3,18 +3,34 @@ session_start();
 include("connection.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
-if(isset($user_data["user_id"])){
+if(isset($user_data["user_id"]) and isset($_GET["edit_id"])){
 $property_name = $property_id = $description = $city = $address = $address_link = $price = $image1 = $image2 = $contact_number = $contact_email = "";
 $eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
 $flag = 0;
 $eerror = "";
+if(isset($_GET["edit_id"])){
+    $edit_id=$_GET["edit_id"];
+		$query = "select * from property where property_id = '$edit_id' limit 1";
 
+		$result = mysqli_query($con, $query);
+		if ($result && mysqli_num_rows($result) > 0) {
 
-
-
-
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+			$property_data = mysqli_fetch_assoc($result);
+		}
+    $property_name = $property_data["property_name"];
+    $property_id = $property_data["property_id"];
+    $description = $property_data["description"];
+    $city = $property_data["city"];
+    $address = $property_data["address"];
+    $address_link = $property_data["address_link"];
+    $price = $property_data["price"];
+    $image1 = $property_data["image1"];
+    $image2 = $property_data["image2"];
+    $contact_number = $property_data["contact_number"];
+    $contact_email = $property_data["contact_email"];
+    $flag=1;
+}
+elseif($_SERVER['REQUEST_METHOD'] == "POST") {
 	//something was posted
 
 	
@@ -98,11 +114,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 	}
 	if ($flag == 0) {
-		$query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$image1','$image2','$contact_number','$contact_email')";
+        // $query = "update property set `property_name`='$property_name',`description`='$description',`city`='$city',`address`='$address',`address_link`='$address_link',`price`='$price',`image1`='$image1',`image2`='$image2',`contact_number`='$contact_number',`contact_email`='$contact_email'";
+        $query = "update property set `property_name`='$property_name',`description`='$description',`city`='$city',`address`='$address',`address_link`='$address_link',`price`='$price',`contact_number`='$contact_number',`contact_email`='$contact_email'";
+		// $query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$image1','$image2','$contact_number','$contact_email')";
 		
 		mysqli_query($con, $query);
-		unset($_FILES['image1']);
-		unset($_FILES['image2']);
+		// unset($_FILES['image1']);
+		// unset($_FILES['image2']);
 		header("Location: upload.php");
 		die;
 	}
@@ -126,7 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
 	<?php include("./shared/header.php") ?>
-	<?php if(isset($user_data["user_id"])){?>
+	<?php if(isset($user_data["user_id"]) and isset($_GET["edit_id"])){?>
+        
 	<div class="form_box">
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" style='width:500px;' enctype='multipart/form-data'>
 			<h2 class="form_box heading">Upload</h2>
