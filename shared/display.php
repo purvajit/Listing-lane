@@ -2,7 +2,10 @@
 	<div class="property_display container">
 		<h2><?php echo strtoupper($bycity["city"]); ?></h2>
 		<section class="properties container">
-			<?php foreach (fetch_by_city($con, $bycity["city"]) as $row) { ?>
+			<?php foreach (fetch_by_city($con, $city) as $row) {
+				if ($count < 4) {
+					$count++;
+			?>
 
 				<a href="property.php?id=<?php echo $row["property_id"] ?>">
 					<div class="property-box">

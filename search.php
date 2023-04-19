@@ -16,12 +16,19 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_SESSION['admin'])) {
 	$adminstyle = "";
 }
-if (isset($_SESSION['search_str'])) {
-	$array = search($con, $_SESSION['search_str']);
-	// print_r($array);
+$search_str="";
+$array =array();
+if(!empty($_GET["search_str"])){
+	$search_str=$_GET['search_str'];
+	$array = search($con, trim($search_str));
+	unset($_GET["search_str"]);
 }
-
-
+elseif($_SERVER['REQUEST_METHOD'] == "POST") {
+	if (!empty($_POST['search_str'])){
+	$search_str=$_POST['search_str'];
+	$array = search($con, trim($search_str));
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +44,13 @@ if (isset($_SESSION['search_str'])) {
 
 <body>
 	<?php include("./shared/header.php") ?>
+	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+	<input type="text" name="search_str" value="<?php if (isset($search_str)) {
+															echo trim($search_str);
+														} ?> "required>
+	<div class=""> <input type="submit" class="submit" value="search" /></div>
+
+	</form>
 	<?php if (sizeof($array) == 0) {
 		echo "<h1>No match found</h1>";
 	}
