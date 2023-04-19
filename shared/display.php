@@ -1,6 +1,9 @@
-<?php foreach (fetch_all_city($con) as $bycity) { ?>
+<?php foreach (fetch_all_city($con) as $bycity) {
+	$city=$bycity["city"];
+	$count=0;
+	 ?>
 	<div class="property_display container">
-		<h2><?php echo strtoupper($bycity["city"]); ?></h2>
+		<h2><?php echo strtoupper($city); ?></h2>
 		<section class="properties container">
 			<?php foreach (fetch_by_city($con, $city) as $row) {
 				if ($count < 4) {
@@ -17,7 +20,8 @@
 						</div>
 					</div>
 				</a>
-			<?php } ?>
+			<?php } else{echo "<a href='search.php?search_str=", urlencode($city),  "'>view all</a>"; break;}}?>
+
 		</section>
 	</div>
-<?php } ?>
+<?php }?>

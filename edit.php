@@ -29,6 +29,10 @@ if(isset($_GET["edit_id"])){
     $contact_number = $property_data["contact_number"];
     $contact_email = $property_data["contact_email"];
     $flag=1;
+    $dir1="uploads/".$image1;
+    $dir2="uploads/".$image2;
+    $_FILES['image1']=fopen($dir1,'r');
+    $_FILES['image2']=fopen($dir2,'r');
 }
 elseif($_SERVER['REQUEST_METHOD'] == "POST") {
 	//something was posted
@@ -139,7 +143,7 @@ elseif($_SERVER['REQUEST_METHOD'] == "POST") {
 	<meta name="description" content="">
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Upload</title>
+	<title>Edit</title>
 </head>
 
 <body>
@@ -148,7 +152,7 @@ elseif($_SERVER['REQUEST_METHOD'] == "POST") {
         
 	<div class="form_box">
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" style='width:500px;' enctype='multipart/form-data'>
-			<h2 class="form_box heading">Upload</h2>
+			<h2 class="form_box heading">Edit</h2>
 			<p class="error"><?php echo $eerror; ?></p>
 
 			<label class="">Property name</label>

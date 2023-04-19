@@ -4,7 +4,7 @@
             <label class="form_label" for="query_label">Search </label>
             <input type="text" id="query_label" name="query" />
         </div>
-        <input type="submit" value="submit" />
+        <input type="submit" value="Search" />
     </form>
 </div>
 

@@ -41,7 +41,8 @@ while ($row = mysqli_fetch_assoc($all_property)) {
 
 <body>
     <?php include("./shared/header.php") ?>
-    <?php if(isset($user_data["user_id"])){?>
+	<?php if(isset($user_data["user_id"]) and ($user_data["admin"])){?>
+
     <div><?php echo "<a href='upload.php'>New</a>"; ?></div>
     <div class="box">
         <table>

@@ -36,10 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$contact_email = $_POST["contact_email"];
 		//images
 		$uploaddir = 'uploads/';
-		$imgname=$property_id."image1". "jpg";
+		$imgname=$property_id."image1". ".jpg";
 		$tempimgname=$_FILES['image1']['tmp_name'];
 		$uploadfile = $uploaddir . $imgname;
-		$imgname2=$property_id."image2"."jpg";
+		$imgname2=$property_id."image2".".jpg";
 		$tempimgname2=$_FILES['image2']['tmp_name'];
 		$uploadfile2 = $uploaddir . $imgname2;
 
@@ -126,7 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
 	<?php include("./shared/header.php") ?>
-	<?php if(isset($user_data["user_id"])){?>
+	<?php if(isset($user_data["user_id"]) and ($user_data["admin"])){?>
+
 	<div class="form_box">
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" style='width:500px;' enctype='multipart/form-data'>
 			<h2 class="form_box heading">Upload</h2>
