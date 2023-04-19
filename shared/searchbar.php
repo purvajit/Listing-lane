@@ -2,7 +2,7 @@
     <form action="search.php" method="POST" class="form">
         <div class="form_block">
             <label class="form_label" for="query_label">Search </label>
-            <input type="text" id="query_label" name="query" />
+            <input type="text" id="query_label" name="search_str" />
         </div>
         <input type="submit" value="Search" />
     </form>

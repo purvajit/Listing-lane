@@ -3,15 +3,18 @@ session_start();
 include("connection.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
-if(isset($user_data["user_id"])){
-if (isset($_GET['dlt_id'])) {
-    $dlt_id = $_GET['dlt_id'];
-    $delete = mysqli_query($con, "DELETE FROM `property` WHERE `property_id`='$dlt_id'");
-    unset($_GET['dlt_id']);
-    header("Location: manage.php");
-}
 
-    $query = "select property_id,property_name,city FROM property";
+if (!isset($user_data["user_id"]) || $user_data["admin"] == 0) {
+    header("Location: logout.php");
+} else if (isset($user_data["user_id"])) {
+    if (isset($_GET['dlt_id'])) {
+        $dlt_id = $_GET['dlt_id'];
+        $delete = mysqli_query($con, "DELETE FROM `property` WHERE `property_id`='$dlt_id'");
+        unset($_GET['dlt_id']);
+        header("Location: manage.php");
+    }
+
+    $query = "select property_id, property_name, city FROM property";
     $all_property = $con->query($query);
     $table = array();
     while ($row = mysqli_fetch_assoc($all_property)) {

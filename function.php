@@ -77,6 +77,7 @@ function search_properties_in_city_by_name($con, $search_str, $city)
 	}
 	return $result2;
 }
+
 function search_property_by_id($con, $id)
 {
 
@@ -87,4 +88,5 @@ function search_property_by_id($con, $id)
 		$property = mysqli_fetch_assoc($result);
 		return $property;
 	}
+
 }
