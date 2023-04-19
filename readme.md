@@ -2,7 +2,7 @@
 
 LAMPT Project by
 
-1. [Imrraaj](github.com/imrraaj) 20BCE218
+1. [Imrraaj](https://github.com/imrraaj) 20BCE218
 2. [Vivek](github.com/imrraaj) 20BCE226
 3. [Purvajit](github.com/imrraaj) 20BCE238
 
