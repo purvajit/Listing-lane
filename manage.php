@@ -5,7 +5,7 @@ include("function.php"); //from function.php
 $user_data = check_login($con);
 
 if (!isset($user_data["user_id"]) || $user_data["admin"] == 0) {
-    header("Location: logout.php");
+    header("Location: index.php");
 } else if (isset($user_data["user_id"])) {
     if (isset($_GET['dlt_id'])) {
         $dlt_id = $_GET['dlt_id'];
@@ -80,8 +80,6 @@ if (!isset($user_data["user_id"]) || $user_data["admin"] == 0) {
                         <td><?php echo $row["city"]; ?></td>
                         <td><?php echo "<a href='edit.php?edit_id=", urlencode($id), "'>Edit</a>"; ?></td>
                         <td><?php echo "<a href='manage.php?dlt_id=", urlencode($id), "'>Delete</a>"; ?></td>
-                </tr>
-            <?php $sr = 1;?>
                     </tr>
             <?php }
             } else {

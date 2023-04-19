@@ -4,9 +4,9 @@ include("connection.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
 if (!isset($user_data["user_id"]) || $user_data["admin"] == 0) {
-	header("Location: logout.php");
+	header("Location: index.php");
 }
-if (isset($user_data["user_id"])) {
+else{
 	$property_name = $property_id = $description = $city = $address = $address_link = $price = $image1 = $image2 = $contact_number = $contact_email = "";
 	$eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
 	$flag = 0;
@@ -136,7 +136,7 @@ if (isset($user_data["user_id"])) {
 			die;
 		}
 	}
-}
+
 ?>
 
 
@@ -223,13 +223,11 @@ if (isset($user_data["user_id"])) {
 			<p class="error"><?php echo $econtact_email; ?></p>
 
 			<div class=""><input type="submit" class="submit"></div>
-			<div class=""><a href="index.php"> Manage</a></div>
+			<div class=""><a href="manage.php"> Manage</a></div>
 		</form>
 	</div>
 
-	<?php } else {
-		echo "Please Login";
-	} ?>
+	<?php } ?>
 
 </body>
 

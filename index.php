@@ -21,6 +21,10 @@ $user_data = check_login($con);
 
 <body>
 	<?php include("./shared/header.php") ?>
+	<?php if (isset($user_data["user_id"]) && $user_data["admin"] == 1) {
+		include("./shared/dashboard.php");
+	} ?>
+
 	<?php include("./shared/hero.php") ?>
 	<?php include("./shared/searchbar.php") ?>
 	<?php include("./shared/feature.php") ?>

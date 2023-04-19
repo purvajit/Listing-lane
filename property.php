@@ -142,6 +142,8 @@ function test_data($id)
                 }
                 ?>
             </div>
+            <!-- <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBmNpn0OCUmhbri12TPo-u0hTlkJRPUBTo&q=Space+Needle,Seattle+WA" width="100%" frameborder="0"></iframe> -->
+            
         </div>
 
     </section>

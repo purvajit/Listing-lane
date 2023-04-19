@@ -6,8 +6,9 @@
 		<h2><?php echo strtoupper($city); ?></h2>
 		<section class="properties container">
 			<?php foreach (fetch_by_city($con, $bycity["city"]) as $row) {
-			?>
-
+				if($count<4){
+					$count++;
+					?>
 				<a href="property.php?id=<?php echo $row["property_id"] ?>">
 					<div class="property-box">
 						<div class="property_image" style="background-image: url(./uploads/<?php echo $row["image1"] ?>), linear-gradient(black, white);"></div>
