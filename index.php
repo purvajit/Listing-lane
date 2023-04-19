@@ -3,25 +3,7 @@ session_start();
 include("connection.php");
 include("function.php"); //from function.php
 $user_data = check_login($con);
-$loginstyle = "";
-$logoutstyle = "";
-$adminstyle = "style='display:none;'";
 
-$isLoggedIn = false;
-$isAdmin = false;
-$search_page = 0;
-if (isset($_SESSION['user_id'])) {
-	$loginstyle = "style='display:none;'";
-	$isLoggedIn = true;
-}
-if (!isset($_SESSION['user_id'])) {
-	$logoutstyle = "style='display:none;'";
-	$isLoggedIn = false;
-}
-if (isset($_SESSION['admin'])) {
-	$adminstyle = "";
-	$isAdmin = true;
-}
 
 ?>
 
@@ -40,6 +22,7 @@ if (isset($_SESSION['admin'])) {
 <body>
 	<?php include("./shared/header.php") ?>
 	<?php include("./shared/hero.php") ?>
+	<?php include("./shared/searchbar.php") ?>
 	<?php include("./shared/feature.php") ?>
 	<?php include("./shared/display.php") ?>
 	<?php include("./shared/footer.php") ?>
@@ -47,5 +30,3 @@ if (isset($_SESSION['admin'])) {
 </body>
 
 </html>
-<!-- <?php while ($row = mysqli_fetch_assoc($all_property)) {
-		} ?> -->

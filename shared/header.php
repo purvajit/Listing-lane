@@ -1,13 +1,12 @@
 <?php
+
 $isLoggedIn = false;
 $isAdmin = false;
 $search_page = 0;
 if (isset($_SESSION['user_id'])) {
-    $loginstyle = "style='display:none;'";
     $isLoggedIn = true;
 }
 if (!isset($_SESSION['user_id'])) {
-    $logoutstyle = "style='display:none;'";
     $isLoggedIn = false;
 }
 if (isset($_SESSION['admin'])) {
@@ -25,8 +24,8 @@ if (isset($_SESSION['admin'])) {
 
     <ul class="primary-navigation" id="primary-navigation" role="list" data-open="false">
         <li><a href="newlistings.php">New</a></li>
-        <li><a href="index.php#contact">About</a></li>
-        <li><a href="index.php#contact">Contact</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="contact.php">Contact</a></li>
         <?php
         if ($isLoggedIn === false) {
             echo "<li><a href='login.php'>Login</a></li>";

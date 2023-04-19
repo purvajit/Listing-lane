@@ -60,18 +60,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Login</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./style.css">
+	<title>Login into your account | Listing Lane</title>
 	<style>
 		.error {
 			color: firebrick;
 			font-weight: 500;
+			display: inline;
 		}
 
 		body,
@@ -91,78 +93,78 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			margin: 0 0 1rem 0;
 		}
 
-		form>* {
+		.form_box {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-width: 300px;
+		}
+
+		.form_block {
 			margin-bottom: 2rem;
 		}
 
-		label>span:not(.error) {
+		label {
 			display: block;
-			cursor: pointer;
-			font-weight: 700;
-			font-size: large;
+			font-weight: 600;
+			font-size: medium;
+			margin-block: 0.5rem;
 		}
 
-		label>span.error {
-			display: block;
-			margin-bottom: 1rem;
-		}
-
-		label>input {
+		input {
+			width: 100%;
 			padding: 0.5rem;
-			margin: 0.5rem 0;
-			width: 90%;
+			font-size: 1rem;
+			font-weight: 600;
+			border: 1px solid var(--colour2);
 		}
 
-		label>textarea {
-			padding: 0.5rem;
-			margin: 0.5rem 0;
-			width: 90%;
-			height: 64px;
+		input:hover,
+		input:focus {
+			border-radius: 1px;
+			outline: 2px solid var(--colour2);
 		}
 
-		input[type="chechbox"] {
-			display: inline;
-			margin: 0;
-			padding: 0;
+		input[type="submit"] {
+			background-color: var(--colour2);
+			border: 0;
 		}
 
-		.check {
-			display: flex;
+		input[type="submit"]:hover,
+		input[type="submit"]:focus {
+			outline: 2px solid var(--colour2);
+			outline-offset: 1px;
 		}
 
-		.check>* {
-			width: 50%;
-		}
-
-		select {
-			margin-bottom: 1rem;
+		.signup_tip {
+			margin-top: 0.5rem;
+			font-weight: 600;
+			font-size: 1.05rem;
+			color: var(--colour1);
 		}
 	</style>
-	<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body class="bg">
 
 	<?php include('./shared/header.php') ?>
-	<div class="form_box">
+	<div class="form_box container">
 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 			<h2 class="form_box heading">LOGIN</h2>
 
+			<div class="form_block">
+				<label class="form_label" for="user_label">Username <span class="error">*</span></label>
+				<input type="text" id="user_label" name="user_id" value="<?php echo $user_id ?>">
+				<p class="error"><?php echo $euser_id; ?></p>
+			</div>
+			<div class="form_block">
+				<label class="form_label" for="password_label">Password <span class="error">*</span> </label>
+				<input type="password" id="password_label" name="password" value="<?php echo $password; ?>">
+				<p class="error"><?php echo $epassword; ?></p>
 
-			<div>
-				<label class="form_label" for="user_label">User Id</label>
-				<input type="text" id="user_label" name="user_id" value="<?php echo $user_id ?>" id="" maxlength="20">
-				<p class="error">*<?php echo $euser_id; ?></p>
 			</div>
-			<div>
-				<label class="form_label" for="password_label">Password</label>
-				<input type="password" id="password_label" name="password" value="<?php echo $password; ?>" size="20" maxlength="20">
-				<p class="error">*<?php echo $epassword; ?></p>
-			</div>
-			<div class=""><input type="submit" class="submit" value="Login"></div>
-			<div class="">New here? <a href="signup.php"> Sign up</a></div>
-			<a></a>
-			<a></a>
+			<input type="submit" class="submit" value="Login" />
+			<p class="signup_tip">Do not have an account? <a href="signup.php">Create one!</a></p>
 		</form>
 	</div>
 </body>
