@@ -24,8 +24,8 @@ if (isset($_SESSION['admin'])) {
 
     <ul class="primary-navigation" id="primary-navigation" role="list" data-open="false">
         <li><a href="newlistings.php">New</a></li>
-        <li><a href="index.php#contact">About</a></li>
-        <li><a href="index.php#contact">Contact</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="contact.php">Contact</a></li>
         <?php
         if ($isLoggedIn === false) {
             echo "<li><a href='login.php'>Login</a></li>";

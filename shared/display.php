@@ -4,7 +4,7 @@
 		<section class="properties container">
 			<?php foreach (fetch_by_city($con, $bycity["city"]) as $row) { ?>
 
-				<a href="property.php/?id=<?php echo $row["property_id"] ?>">
+				<a href="property.php?id=<?php echo $row["property_id"] ?>">
 					<div class="property-box">
 						<div class="property_image" style="background-image: url(./uploads/<?php echo $row["image1"] ?>), linear-gradient(black, white);"></div>
 						<div class="detail">
