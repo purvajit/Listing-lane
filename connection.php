@@ -6,6 +6,5 @@ $dbname = "listing lane";
 
 
 if (!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) {
-	die("failed to connect");
+	die("Could Not establish database connection\n ERROR: " . mysqli_connect_error());
 }
-// echo "done";

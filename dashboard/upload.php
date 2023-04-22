@@ -1,60 +1,50 @@
 <?php
 session_start();
-include("connection.php");
-include("function.php"); //from function.php
-$user_data = check_login($con);
-if (!isset($user_data["user_id"]) || $user_data["admin"] == 0) {
+include("../connection.php");
+include("../function.php"); //from function.php
+$user_data = check_dashboard_admin($con);
+if (!isset($user_data["username"])) {
 	header("Location: index.php");
 }
-else{
-	$property_name = $property_id = $description = $city = $address = $address_link = $price = $image1 = $image2 = $contact_number = $contact_email = "";
-	$eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
-	$flag = 0;
-	$eerror = "";
-	if ($_SERVER['REQUEST_METHOD'] == "POST") {
-		//something was posted
-		$property_name = $_POST["property_name"];
-		$property_id = $_POST["property_id"];
-		$description = $_POST["description"];
-		$city = $_POST["city"];
-		$address = $_POST["address"];
-		$address_link = $_POST["address_link"];
-		$price = $_POST["price"];
-		$image1 = $property_id."image1";
-		$image2 = $property_id."image2";
-		$contact_number = $_POST["contact_number"];
-		$contact_email = $_POST["contact_email"];
-		//images
-		$uploaddir = 'uploads/';
-		$imgname=$property_id."image1". ".jpg";
-		$tempimgname=$_FILES['image1']['tmp_name'];
-		$uploadfile = $uploaddir . $imgname;
-		$imgname2=$property_id."image2".".jpg";
-		$tempimgname2=$_FILES['image2']['tmp_name'];
-		$uploadfile2 = $uploaddir . $imgname2;
+$property_name = $property_id = $description = $city = $address = $address_link = $price = $image1 = $image2 = $contact_number = $contact_email = "";
+$eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
+$flag = 0;
+$eerror = "";
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	//something was posted
+	$property_name = $_POST["property_name"];
+	$property_id = $_POST["property_id"];
+	$description = $_POST["description"];
+	$city = $_POST["city"];
+	$address = $_POST["address"];
+	$address_link = $_POST["address_link"];
+	$price = $_POST["price"];
+	$image1 = $property_id . "image1";
+	$image2 = $property_id . "image2";
+	$contact_number = $_POST["contact_number"];
+	$contact_email = $_POST["contact_email"];
+	//property name
+	if (strlen($property_name) < 3 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $property_name)) {
+		$eproperty_name = "Invalid Name";
+		$flag = 1;
+	}
+	//property id
+	if (strlen($property_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $property_id)) {
+		$eproperty_id = "Property id should Alphanumeric with more than 3 characters.";
+		$flag = 1;
+	} else {
+		$q = "select count(*) as count from property where property_id = '" . $property_id . "' ";
+		$test = $con->query($q);
+		while ($row = mysqli_fetch_assoc($test)) {
+			$result[] = $row;
+		}
+		if ($result[0]['count']) {
+			$flag = 1;
+			$eproperty_id = "Property id already exists. Try something else.";
+		} else {
 
-		if (move_uploaded_file($tempimgname, $uploadfile)) {
-			echo "File is valid, and was successfully uploaded.\n";
-		} else {
-			$flag=1;
-			$eimage1="Something went wrong uploading the image";
-		}
-		if (move_uploaded_file($tempimgname2, $uploadfile2)) {
-			echo "File is valid, and was successfully uploaded.\n";
-		} else {
-			$flag=1;
-			$eimage2="Something went wrong uploading the image";
-		}
-		//property name
-		if (strlen($property_name) < 3 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $property_name)) {
-			$eproperty_name = "Invalid Name";
-			$flag = 1;
-		}
-		//property id
-		if (strlen($property_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $property_id)) {
-			$eproperty_id = "Property id should Alphanumeric with more than 3 characters.";
-			$flag = 1;
-		} else {
+
+			print_r($_FILES);
 			$property_name = $_POST["property_name"];
 			$property_id = $_POST["property_id"];
 			$description = $_POST["description"];
@@ -87,56 +77,36 @@ else{
 				$flag = 1;
 				$eimage2 = "Something went wrong uploading the image";
 			}
-			//property name
-			if (strlen($property_name) < 3 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $property_name)) {
-				$eproperty_name = "Invalid Name";
-				$flag = 1;
-			}
-			//property id
-			if (strlen($property_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $property_id)) {
-				$eproperty_id = "Property id should Alphanumeric with more than 3 characters.";
-				$flag = 1;
-			} else {
-				$q = "select count(*) as count from property where property_id = '" . $property_id . "' ";
-				$test = $con->query($q);
-				while ($row = mysqli_fetch_assoc($test)) {
-					$result[] = $row;
-				}
-				if ($result[0]['count']) {
-					$flag = 1;
-					$eproperty_id = "Property id already exists. Try something else.";
-				}
-			}
-			//description
-			//address
-			//address_link
-			//price
-			if (strlen($price) < 2 or !preg_match("/^([0-9,]+)$/", $price)) {
-				$eprice = "Invalid price";
-				$flag = 1;
-			}
-			//contact_number
-			if (strlen($contact_number) < 2 or !preg_match("/^([0-9,]+)$/", $contact_number)) {
-				$econtact_number = "Invalid Contact number";
-				$flag = 1;
-			}
-			//contact_email
-			if (strlen($contact_email) < 5 or !preg_match("/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i", $contact_email)) {
-				$econtact_email = "Invalid Email id";
-				$flag = 1;
-			}
-		}
-		if ($flag == 0) {
-			$query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$image1','$image2','$contact_number','$contact_email')";
-
-			mysqli_query($con, $query);
-			unset($_FILES['image1']);
-			unset($_FILES['image2']);
-			header("Location: upload.php");
-			die;
 		}
 	}
+	//description
+	//address
+	//address_link
+	//price
+	if (strlen($price) < 2 or !preg_match("/^([0-9,]+)$/", $price)) {
+		$eprice = "Invalid price";
+		$flag = 1;
+	}
+	//contact_number
+	if (strlen($contact_number) < 2 or !preg_match("/^([0-9,]+)$/", $contact_number)) {
+		$econtact_number = "Invalid Contact number";
+		$flag = 1;
+	}
+	//contact_email
+	if (strlen($contact_email) < 5 or !preg_match("/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i", $contact_email)) {
+		$econtact_email = "Invalid Email id";
+		$flag = 1;
+	}
+}
+if ($flag == 0) {
+	$query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$image1','$image2','$contact_number','$contact_email')";
 
+	mysqli_query($con, $query);
+	unset($_FILES['image1']);
+	unset($_FILES['image2']);
+	header("Location: upload.php");
+	die;
+}
 ?>
 
 
@@ -148,13 +118,13 @@ else{
 <head>
 	<meta charset="UTF-8">
 	<meta name="description" content="">
-	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Upload</title>
 </head>
 
 <body>
-	<?php include("./shared/header.php") ?>
+	<?php include("../shared/header.php") ?>
 	<div class="form_box">
 		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" style='width:500px;' enctype='multipart/form-data'>
 			<h2 class="form_box heading">Upload</h2>
@@ -227,7 +197,6 @@ else{
 		</form>
 	</div>
 
-	<?php } ?>
 
 </body>
 

@@ -4,29 +4,27 @@ session_start();
 
 include("connection.php");
 include("function.php");
-
-// check_login($con);
-// if (isset($_SESSION['user_id'])){
-// 	header("Location: index.php");
-// 	exit;
-// }
+if (isset($_SESSION['username'])) {
+	header("Location: index.php");
+	die;
+}
 
 $flag = 0;
-$user_id = $password = $euser_id = $epassword = $error = '';
+$username = $password = $eusername = $epassword = $error = '';
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//something was posted
-	if (empty($_POST['user_id'])) {
+	if (empty($_POST['username'])) {
 		$flag = 1;
-		$euser_id = "Username required";
+		$eusername = "Username required";
 	}
 	if (empty($_POST['password'])) {
 		$flag = 1;
 		$epassword = "Password required";
 	} else {
-		$user_id = $_POST['user_id'];
+		$username = $_POST['username'];
 		$password = $_POST['password'];
 		//read from database user table
-		$query = "select * from user where user_id = '$user_id' limit 1";
+		$query = "select * from user where username = '$username' and is_active = 1 limit 1";
 		$result = mysqli_query($con, $query);
 
 		if ($result) {
@@ -35,27 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				$user_data = mysqli_fetch_assoc($result);
 
 				if ($user_data['password'] === $password) {
-					if ($user_data['admin'] == 0) {
-						$_SESSION['user_id'] = $user_data['user_id'];
-						header("Location: index.php");
-						die;
-					} else {
-						$_SESSION['user_id'] = $user_data['user_id'];
-						$_SESSION['admin'] = 1;
-						header("Location: index.php");
-						die;
-					}
+					$_SESSION['username'] = $user_data['username'];
+					$_SESSION['is_admin'] = $user_data['is_admin'];
+					header("Location: index.php");
+					die;
 				} else {
 					$epassword = "Wrong password";
 					$flag = 1;
 				}
 			} else {
-				$epassword = "User not found";
+				$epassword = "User not found or User is blocked by the admins";
 				$flag = 1;
 			}
 		}
 	}
-	// echo "wrong username or password!";
 }
 
 ?>
@@ -154,8 +145,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 			<div class="form_block">
 				<label class="form_label" for="user_label">Username <span class="error">*</span></label>
-				<input type="text" id="user_label" name="user_id" value="<?php echo $user_id ?>">
-				<p class="error"><?php echo $euser_id; ?></p>
+				<input type="text" id="user_label" name="username" value="<?php echo $username ?>">
+				<p class="error"><?php echo $eusername; ?></p>
 			</div>
 			<div class="form_block">
 				<label class="form_label" for="password_label">Password <span class="error">*</span> </label>
