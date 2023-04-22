@@ -5,10 +5,6 @@ if (!empty($_GET["id"])) {
     $id =  test_data($_GET["id"]);
     $data = search_properties_by_id($con, $id);
 }
-function test_data($id)
-{
-    return htmlspecialchars(stripslashes(trim($id)));
-}
 
 ?>
 
@@ -48,7 +44,7 @@ function test_data($id)
             margin-bottom: 1rem;
         }
 
-        .property-heading>a {
+        .property-heading {
             color: var(--colour1);
             text-transform: capitalize;
         }
@@ -104,6 +100,11 @@ function test_data($id)
             outline: 2px solid var(--colour2);
             outline-offset: 1px;
         }
+
+        .map {
+            width: fit-content;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -121,15 +122,17 @@ function test_data($id)
             <p class="added">Added 18 hours ago</p>
 
             <h1 class="property-heading">
-                <a href="<?php echo $data["address_link"] ?>">
-                    <?php echo $data["property_name"] ?>
-                </a>
+                <?php echo $data["property_name"] ?>
             </h1>
             <p class="address"><?php echo $data["address"] ?></p>
             <p class="city"><?php echo $data["city"] ?> * <?php echo $data["city"] ?></p>
 
             <p class="description"><?php echo $data["description"] ?></p>
 
+            <div class="line"></div>
+            <div class="map">
+                <?php echo $data["address_link"] ?>
+            </div>
             <div class="line"></div>
             <div class="price">
                 <p>$<?php echo $data["price"] ?></p>
@@ -142,8 +145,7 @@ function test_data($id)
                 }
                 ?>
             </div>
-            <!-- <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBmNpn0OCUmhbri12TPo-u0hTlkJRPUBTo&q=Space+Needle,Seattle+WA" width="100%" frameborder="0"></iframe> -->
-            
+
         </div>
 
     </section>

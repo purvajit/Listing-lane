@@ -21,7 +21,7 @@ if ($isLoggedIn && $_SESSION["is_admin"] == 1) {
 <nav class="primary-nav container">
     <div class="logo">
         <img class="logo-image" src="./images/templogo.png" alt="Logo">
-        <a class="logo-text" href="./">Listing Lane</a>
+        <a class="logo-text" href="http://localhost/Innovative/">Listing Lane</a>
     </div>
 
     <ul class="primary-navigation" id="primary-navigation" role="list" data-open="false">

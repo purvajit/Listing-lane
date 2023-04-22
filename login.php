@@ -20,9 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if (empty($_POST['password'])) {
 		$flag = 1;
 		$epassword = "Password required";
-	} else {
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+	}
+	if ($flag == 0) {
+		$username = test_data($_POST['username']);
+		$password = test_data($_POST['password']);
 		//read from database user table
 		$query = "select * from user where username = '$username' and is_active = 1 limit 1";
 		$result = mysqli_query($con, $query);
@@ -31,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			if ($result && mysqli_num_rows($result) > 0) {
 
 				$user_data = mysqli_fetch_assoc($result);
-
-				if ($user_data['password'] === $password) {
+				$checkpassword = password_verify($password, $user_data["password"]);
+				if ($checkpassword === true) {
 					$_SESSION['username'] = $user_data['username'];
 					$_SESSION['is_admin'] = $user_data['is_admin'];
 					header("Location: index.php");
