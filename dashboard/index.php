@@ -20,11 +20,14 @@ check_dashboard_admin($con);
 </head>
 
 <body>
+	<?php include("../shared/header.php") ?>
     <div class="features_container">
         <a class='feature' href='manage.php'>Properties</a>
         <a class='feature' href='contact.php'>Contact</a>
         <a class='feature' href='user.php'>User</a>
     </div>
+	<?php include("../shared/footer.php") ?>
+
     </div>
 </body>
 

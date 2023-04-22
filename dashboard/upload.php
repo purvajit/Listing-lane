@@ -97,15 +97,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$econtact_email = "Invalid Email id";
 		$flag = 1;
 	}
-}
-if ($flag == 0) {
-	$query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$image1','$image2','$contact_number','$contact_email')";
-
-	mysqli_query($con, $query);
-	unset($_FILES['image1']);
-	unset($_FILES['image2']);
-	header("Location: upload.php");
-	die;
+	if ($flag == 0) {
+		$query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$image1','$image2','$contact_number','$contact_email')";
+	
+		mysqli_query($con, $query);
+		unset($_FILES['image1']);
+		unset($_FILES['image2']);
+		header("Location: upload.php");
+		die;
+	}
 }
 ?>
 

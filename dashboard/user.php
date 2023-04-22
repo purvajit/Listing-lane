@@ -123,7 +123,7 @@ if (isset($user_data["username"])) {
                             if ($row["is_active"] == 1) {
                                 echo "<a href='user.php?username=", urlencode($id), "'>Block</a>";
                             } else {
-                                echo "<a href='user.php?username=", urlencode($id), "'>Unlock</a>";
+                                echo "<a href='user.php?username=", urlencode($id), "'>Unblock</a>";
                             } ?>
 
                         </td>
