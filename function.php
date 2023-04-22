@@ -1,9 +1,18 @@
 <?php
+
+function check_dashboard_admin($con)
+{
+	$user_data = check_login($con);
+	if (!isset($user_data["username"]) || $user_data["is_admin"] == 0) {
+		header("Location: ../index.php");
+		die;
+	} else return $user_data;
+}
 function check_login($con)
 {
-	if (isset($_SESSION['user_id'])) {
-		$id = $_SESSION['user_id'];
-		$query = "select * from user where user_id = '$id' limit 1";
+	if (isset($_SESSION['username'])) {
+		$username = $_SESSION['username'];
+		$query = "select * from user where username = '$username' and is_active = 1 limit 1";
 
 		$result = mysqli_query($con, $query);
 		if ($result && mysqli_num_rows($result) > 0) {
@@ -15,7 +24,10 @@ function check_login($con)
 	// die;
 }
 
-
+function test_data($str)
+{
+	return htmlspecialchars(stripslashes(trim($str)));
+}
 function fetch_all_city($con)
 {
 	$query = "select DISTINCT city FROM property";
@@ -88,5 +100,4 @@ function search_properties_by_id($con, $id)
 		$property = mysqli_fetch_assoc($result);
 		return $property;
 	}
-
 }

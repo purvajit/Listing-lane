@@ -2,59 +2,59 @@
 session_start();
 include("connection.php");
 include("function.php");
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['username'])) {
 	header("Location: index.php");
 	exit;
 }
 
-$user_id = $first_name = $last_name = $email_id = $password = '';
-$euser_id = $efirst_name = $elast_name = $eemail_id = $epassword = '';
+$username = $first_name = $last_name = $email_id = $password = '';
+$eusername = $efirst_name = $elast_name = $eemail_id = $epassword = '';
 $flag = 0;
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//something was posted
 	if (!empty($_POST['first_name'])) {
-		$first_name = $_POST['first_name'];
+		$first_name = test_data($_POST['first_name']);
 		if (strlen($first_name) < 3 or !preg_match("/^([a-zA-Z' ]+)$/", $first_name)) {
-			$efirst_name = "Invalid Name";
+			$efirst_name = "Name should be 3 letters long and only include letters";
 			$flag = 1;
 		}
 	} else {
-		$efirst_name = "First Name required";
+		$efirst_name = "Name should be 3 letters long and only include letters";
 		$flag = 1;
 	}
 	if (!empty($_POST['last_name'])) {
-		$last_name = $_POST['last_name'];
+		$last_name = test_data($_POST['last_name']);
 		if (strlen($last_name) < 3 or !preg_match("/^([a-zA-Z' ]+)$/", $last_name)) {
-			$elast_name = "Invalid Name";
+			$elast_name = "Name should be 3 letters long and only include letters";
 			$flag = 1;
 		}
 	} else {
-		$elast_name = "Last Name required";
+		$elast_name = "Name should be 3 letters long and only include letters";
 		$flag = 1;
 	}
 
-	if (!empty($_POST['user_id'])) {
-		$user_id = $_POST['user_id'];
-		if (strlen($user_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $user_id)) {
-			$euser_id = "User id should Alphanumeric";
+	if (!empty($_POST['username'])) {
+		$username = test_data($_POST['username']);
+		if (strlen($username) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $username)) {
+			$eusername = "User id should be 3 letters long and contains alphanumeric characters only";
 			$flag = 1;
 		} else {
-			$q = "select count(*) as count from user where user_id = '" . $user_id . "' ";
+			$q = "select count(*) as count from user where username = '" . $username . "' ";
 			$test = $con->query($q);
 			while ($row = mysqli_fetch_assoc($test)) {
 				$result[] = $row;
 			}
 			if ($result[0]['count']) {
 				$flag = 1;
-				$euser_id = "User id already exists";
+				$eusername = "Username is taken. Please login or enter another username";
 			}
 		}
 	} else {
 		$flag = 1;
-		$euser_id = "User id required";
+		$eusername = "username is required";
 	}
 	if (!empty($_POST['email_id'])) {
-		$email_id = $_POST['email_id'];
+		$email_id = test_data($_POST['email_id']);
 		if (strlen($email_id) < 10 or !preg_match("/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i", $email_id)) {
 			$eemail_id = "Invalid Email id";
 			$flag = 1;
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			}
 			if ($result1[0]['count']) {
 				$flag = 1;
-				$eemail_id = "Email id already registered";
+				$eemail_id = "Please login to your existing account";
 			}
 		}
 	} else {
@@ -76,13 +76,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 	if (!empty($_POST['password'])) {
-		$password = $_POST['password'];
+		$password = test_data($_POST['password']);
 	} else {
 		$flag == 1;
-		$epassword = "Password required";
+		$epassword = "Password is required";
 	}
 	if ($flag == 0) {
-		$query = "insert into user (user_id,first_name,last_name,email_id,admin,password) values ('$user_id','$first_name','$last_name','$email_id',0,'$password')";
+		$query = "insert into user (username, first_name, last_name, email_id, is_admin, is_active, password) values ('$username','$first_name','$last_name','$email_id', 0, 1, '$password')";
 		mysqli_query($con, $query) or die(mysqli_error($con));
 		header("Location: login.php");
 		die;
@@ -201,9 +201,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 			<div class="form_block">
-				<label class="form_label">User Id</label>
-				<input type="text" name="user_id" value="<?php echo $user_id; ?>" maxlength="20">
-				<p class="error"><?php echo $euser_id; ?></p>
+				<label class="form_label">Username</label>
+				<input type="text" name="username" value="<?php echo $username; ?>" maxlength="20">
+				<p class="error"><?php echo $eusername; ?></p>
 
 
 			</div>

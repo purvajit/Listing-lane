@@ -1,17 +1,19 @@
 <?php
-
 $isLoggedIn = false;
 $isAdmin = false;
-$search_page = 0;
-if (isset($_SESSION['user_id'])) {
+
+
+
+
+if (isset($_SESSION['username'])) {
     $isLoggedIn = true;
-}
-if (!isset($_SESSION['user_id'])) {
+} else if (!isset($_SESSION['username'])) {
     $isLoggedIn = false;
 }
-if (isset($_SESSION['admin'])) {
-    $adminstyle = "";
+if ($isLoggedIn && $_SESSION["is_admin"] == 1) {
     $isAdmin = true;
+} else {
+    $isAdmin = false;
 }
 ?>
 
@@ -23,16 +25,23 @@ if (isset($_SESSION['admin'])) {
     </div>
 
     <ul class="primary-navigation" id="primary-navigation" role="list" data-open="false">
-        <li><a href="newlistings.php">New</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="contact.php">Contact</a></li>
+        <li><a href="http://localhost/Innovative/newlistings.php">New</a></li>
+        <li><a href="http://localhost/Innovative/about.php">About</a></li>
+        <li><a href="http://localhost/Innovative/contact.php">Contact</a></li>
         <?php
         if ($isLoggedIn === false) {
-            echo "<li><a href='login.php'>Login</a></li>";
+            echo "<li><a href='http://localhost/Innovative/login.php'>Login</a></li>";
         } else {
-            echo "<li><a href='logout.php'>Logout</a></li>";
-            echo "<img class='user-image' src='https://api.dicebear.com/5.x/shapes/svg?seed=".$_SESSION["user_id"]."' alt='user_image'>";
-            echo "<li><a href='#'> Welcome " . $_SESSION["user_id"] . "!</a></li>";
+            echo "<li><a href='http://localhost/Innovative/logout.php'>Logout</a></li>";
+            echo "<img class='user-image' src='https://api.dicebear.com/5.x/shapes/svg?seed=" . $_SESSION["username"] . "' alt='user_image'>";
+            echo "<li><a href='#'> " . $_SESSION["username"] . "!</a></li>";
+        }
+        ?>
+
+
+        <?php
+        if ($isLoggedIn === true && $isAdmin === true) {
+            echo "<li><a href='http://localhost/Innovative/dashboard'><button class='dashboard-btn'>Dashboard</button></a></li>";
         }
         ?>
     </ul>

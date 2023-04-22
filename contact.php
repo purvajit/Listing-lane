@@ -2,8 +2,8 @@
 session_start();
 include("connection.php");
 include("function.php");
-$user_id = $first_name = $last_name = $email_id = $message = '';
-$euser_id = $efirst_name = $elast_name = $eemail_id = $emessage = '';
+$username = $first_name = $last_name = $email_id = $message = '';
+$eusername = $efirst_name = $elast_name = $eemail_id = $emessage = '';
 $flag = 0;
 $success = false;
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -19,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $flag = 1;
     }
 
-    if (!empty($_POST['user_id'])) {
-        $user_id = $_POST['user_id'];
-        if (strlen($user_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $user_id)) {
-            $euser_id = "User id should Alphanumeric";
+    if (!empty($_POST['username'])) {
+        $username = $_POST['username'];
+        if (strlen($username) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $username)) {
+            $eusername = "User id should Alphanumeric";
             $flag = 1;
         } else {
-            $q = "select count(*) as count from user where user_id = '" . $user_id . "' ";
+            $q = "select count(*) as count from user where username = '" . $username . "' ";
             $test = $con->query($q);
             while ($row = mysqli_fetch_assoc($test)) {
                 $result[] = $row;
@@ -33,12 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if ($result[0]['count']) {
             } else {
                 $flag = 1;
-                $euser_id = "User id does not exists";
+                $eusername = "User id does not exists";
             }
         }
     } else {
         $flag = 1;
-        $euser_id = "User id required";
+        $eusername = "User id required";
     }
     if (!empty($_POST['email_id'])) {
         $email_id = $_POST['email_id'];
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $emessage = "Message is required";
     }
     if ($flag == 0) {
-        $query = "INSERT INTO `contact`(`user_id`, `email_id`, `message`) VALUES('$user_id', '$email_id', '$message')";
+        $query = "INSERT INTO `contact`(`username`, `email_id`, `message`) VALUES('$username', '$email_id', '$message')";
         mysqli_query($con, $query) or die(mysqli_error($con));
         $success = true;
     }
@@ -194,8 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             <div class="form_block">
                 <label class="form_label">User Id</label>
-                <input type="text" name="user_id" value="<?php echo $user_id; ?>" maxlength="20">
-                <p class="error"><?php echo $euser_id; ?></p>
+                <input type="text" name="username" value="<?php echo $username; ?>" maxlength="20">
+                <p class="error"><?php echo $eusername; ?></p>
             </div>
 
 
