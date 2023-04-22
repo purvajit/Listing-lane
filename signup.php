@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	}
 	if (!empty($_POST['email_id'])) {
 		$email_id = test_data($_POST['email_id']);
-		if (strlen($email_id) < 10 or !preg_match("/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i", $email_id)) {
+		if (strlen($email_id) < 10 or !filter_var($email_id, FILTER_VALIDATE_EMAIL)) {
 			$eemail_id = "Invalid Email id";
 			$flag = 1;
 		} else {
@@ -77,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 	if (!empty($_POST['password'])) {
 		$password = test_data($_POST['password']);
+		$password = password_hash($password, PASSWORD_DEFAULT);
 	} else {
 		$flag == 1;
 		$epassword = "Password is required";

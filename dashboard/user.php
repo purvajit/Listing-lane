@@ -20,7 +20,7 @@ if (isset($user_data["username"])) {
 
     $current_admin_user = $user_data["username"];
     // so admin can not block himself
-    $query = "SELECT * FROM `user` WHERE username != '$current_admin_user'";
+    $query = "SELECT `username`, `first_name`, `last_name`, `email_id`, `is_admin`, `is_active` FROM `user` WHERE username != '$current_admin_user'";
     $all_property = $con->query($query);
     $table = array();
     while ($row = mysqli_fetch_assoc($all_property)) {
@@ -88,9 +88,6 @@ if (isset($user_data["username"])) {
                         <h4>Last Name</h4>
                     </td>
                     <td>
-                        <h4>Password</h4>
-                    </td>
-                    <td>
                         <h4>Status</h4>
                     </td>
                     <td>
@@ -113,7 +110,6 @@ if (isset($user_data["username"])) {
                         <td><?php echo $row["username"]; ?></td>
                         <td><?php echo $row["first_name"]; ?></td>
                         <td><?php echo $row["last_name"]; ?></td>
-                        <td><?php echo $row["password"]; ?></td>
                         <td><?= $row["is_active"] == 1 ? "Active" : "Blocked" ?></td>
                         <td><?= $row["is_admin"] == 1 ? "<b>Admin</b>" : "User" ?></td>
 
