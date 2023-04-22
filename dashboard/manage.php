@@ -12,7 +12,7 @@ if (isset($user_data["username"])) {
         header("Location: manage.php");
     }
 
-    $query = "select property_id, property_name, city, image1 FROM property";
+    $query = "select property_id, property_name, city, image1, image2 FROM property";
     $all_property = $con->query($query);
     $table = array();
     while ($row = mysqli_fetch_assoc($all_property)) {
@@ -39,34 +39,48 @@ if (isset($user_data["username"])) {
             justify-content: center;
         }
 
-        table {
+        table{
+            width: 70%;
             border: 1px solid var(--colour1);
+            margin: 50px;
             border-collapse: collapse;
         }
 
-        tr,
-        th {
+        tr{
             color: var(--colour1);
         }
+        tr:nth-child(odd){
+            background-color: var(--colour2);
+        }
 
-        td {
+        td,th {
+            text-align:center;
             border: 1px solid var(--colour1);
-            padding: 1rem;
-            text-align: justify;
+            padding: 0.5rem;
+            text-align: center;
             max-width: 250px;
         }
 
+
         button {
             padding: 0.5rem 1.5rem;
+            margin: 0px;
         }
 
         a {
             font-weight: 900;
             color: var(--colour1);
         }
-
-        .upload {
-            margin: 0 auto;
+        button{
+            margin: 0px;
+        }
+        img{
+            width: 100px;
+            margin: 2px;
+        }
+        .images{
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
@@ -76,37 +90,35 @@ if (isset($user_data["username"])) {
     <?php if (isset($user_data["username"])) { ?>
 
         <div class="container">
-            <ul class="upload">
-                <li>
-                    <a href='upload.php'>Create a new property</a>
-                </li>
-            </ul>
+                    <td>
+                                <?php echo "<a href='upload.php'><button>Add a new property</button></a>"; ?>
+                    </td>
         </div>
 
         <div class="box">
             <table>
                 <tr>
-                    <td>
+                    <th>
                         <h4>Sr.No</h4>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         <h4>Property Id</h4>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         <h4>Property Name</h4>
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         <h4>City</h4>
-                    </td>
-                    <td>
-                        <h4>Image</h4>
-                    </td>
-                    <td>
-                        <h4>Edit</h4>
-                    </td>
-                    <td>
-                        <h4>Delete</h4>
-                    </td>
+                    </th>
+                    <th>
+                        <h4>Image1</h4>
+                    </th>
+                    <th>
+                        <h4>Image2</h4>
+                    </th>
+                    <th>
+                        <h4>Action</h4>
+                    </th>
 
                 </tr>
                 <?php $sr = 1;
@@ -117,11 +129,16 @@ if (isset($user_data["username"])) {
                         <td><?php echo $row["property_id"]; ?></td>
                         <td><?php echo $row["property_name"]; ?></td>
                         <td><?php echo $row["city"]; ?></td>
-                        <td>
-                            <img src="http://localhost/Innovative/uploads/<?php echo $row["image1"]; ?>" alt="">
+                        <td calss="images">
+                            <img src="/Innovative/uploads/<?php echo $row["image1"]; ?>" alt="">
                         </td>
-                        <td><?php echo "<a href='edit.php?edit_id=", urlencode($id), "'>Edit</a>"; ?></td>
-                        <td><?php echo "<a href='manage.php?dlt_id=", urlencode($id), "'>Delete</a>"; ?></td>
+                        <td calss="images">
+                            <img src="/Innovative/uploads/<?php echo $row["image2"]; ?>" alt="">
+                        </td>
+                        <td>
+                                <?php echo "<a href='edit.php?edit_id=", urlencode($id), "'><button>Edit</button></a>"; ?>
+                                <?php echo "<a href='manage.php?dlt_id=", urlencode($id), "'><button>Delete</button></a>"; ?>
+                        </td>
                     </tr>
             <?php }
             } else {

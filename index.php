@@ -20,6 +20,7 @@ $user_data = check_login($con);
 </head>
 
 <body>
+	
 	<?php include("./shared/header.php") ?>
 	<?php include("./shared/hero.php") ?>
 	<?php include("./shared/searchbar.php") ?>

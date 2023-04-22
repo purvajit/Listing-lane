@@ -40,22 +40,28 @@ if (isset($user_data["username"])) {
             justify-content: center;
         }
 
-        table {
+        table{
+            width: 70%;
             border: 1px solid var(--colour1);
+            margin: 50px;
             border-collapse: collapse;
         }
 
-        tr,
-        th {
+        tr{
             color: var(--colour1);
         }
+        tr:nth-child(odd){
+            background-color: var(--colour2);
+        }
 
-        td {
+        td,th {
+            text-align:center;
             border: 1px solid var(--colour1);
             padding: 1rem;
-            text-align: justify;
+            text-align: center;
             max-width: 250px;
         }
+
 
         button {
             padding: 0.5rem 1.5rem;
@@ -64,6 +70,9 @@ if (isset($user_data["username"])) {
         a {
             font-weight: 900;
             color: var(--colour1);
+        }
+        button{
+            margin: 0px;
         }
     </style>
 </head>
@@ -111,9 +120,7 @@ if (isset($user_data["username"])) {
                         <td><?php echo $row["message"]; ?></td>
 
                         <td>
-                            <button>
-                                <?php echo "<a href='contact.php?dlt_id=", urlencode($id), "'>Delete</a>"; ?>
-                            </button>
+                                <?php echo "<a href='contact.php?dlt_id=", urlencode($id), "'><button>Delete</button></a>"; ?>
                         </td>
                     </tr>
             <?php }

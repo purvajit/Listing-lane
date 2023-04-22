@@ -47,15 +47,27 @@ if (isset($user_data["username"])) {
             justify-content: center;
         }
 
-        tr,
-        th {
+        table{
+            width: 70%;
             border: 1px solid var(--colour1);
+            margin: 50px;
+            border-collapse: collapse;
+        }
+        
+        tr{
             color: var(--colour1);
         }
+        tr:nth-child(odd){
+            background-color: var(--colour2);
+        }
 
-        td {
+        td,th {
+            height: 60px;
+            text-align:center;
+            border: 1px solid var(--colour1);
             padding: 1rem;
             text-align: center;
+            max-width: 250px;
         }
 
         button {
@@ -65,6 +77,9 @@ if (isset($user_data["username"])) {
         a {
             font-weight: 900;
             color: var(--colour1);
+        }
+        button{
+            margin: 0px;
         }
     </style>
 </head>
@@ -101,8 +116,7 @@ if (isset($user_data["username"])) {
                 <?php $sr = 1;
                 foreach ($table as $row) {
                     $id = $row["username"];
-                    $color = $row["is_active"] == 1 ? "lightgreen" : "lightcoral";
-
+                    $color = $row["is_active"] == 1 ? "#049b706c" : "#630f0f6c";
 
                 ?>
                     <tr style="background-color: <?php echo $color; ?>">
@@ -114,12 +128,11 @@ if (isset($user_data["username"])) {
                         <td><?= $row["is_admin"] == 1 ? "<b>Admin</b>" : "User" ?></td>
 
                         <td>
-
                             <?php
                             if ($row["is_active"] == 1) {
-                                echo "<a href='user.php?username=", urlencode($id), "'>Block</a>";
+                                echo "<a href='user.php?username=", urlencode($id), "'><button>Block</button></a>";
                             } else {
-                                echo "<a href='user.php?username=", urlencode($id), "'>Unblock</a>";
+                                echo "<a href='user.php?username=", urlencode($id), "'><button>Unblock</button></a>";
                             } ?>
 
                         </td>

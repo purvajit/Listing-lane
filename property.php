@@ -131,8 +131,14 @@ if (!empty($_GET["id"])) {
 
             <div class="line"></div>
             <div class="map">
-                <?php echo $data["address_link"] ?>
+                <?php  echo $data["address_link"];?>
             </div>
+            <style>
+                iframe{
+                    width: 1200px;
+                    height: 400px;
+                }
+            </style>
             <div class="line"></div>
             <div class="price">
                 <p>$<?php echo $data["price"] ?></p>

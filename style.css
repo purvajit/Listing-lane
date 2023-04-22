@@ -488,3 +488,13 @@ input[type="submit"]:focus {
 .dashboard-btn {
   padding: 0.5rem 1.5rem;
 }
+a{
+  text-decoration: none;
+}
+a:hover{
+  color: #000;
+  text-decoration: none;
+}
+a:visited{
+  text-decoration: none;
+}

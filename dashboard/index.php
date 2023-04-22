@@ -22,7 +22,8 @@ check_dashboard_admin($con);
 <body>
 	<?php include("../shared/header.php") ?>
     <div class="features_container">
-        <a class='feature' href='manage.php'>Properties</a>
+        <a class='feature' href='manage.php'>Manage Properties</a>
+        <a class='feature' href='upload.php'>Add New Properties</a>
         <a class='feature' href='contact.php'>Contact</a>
         <a class='feature' href='user.php'>User</a>
     </div>

@@ -12,8 +12,12 @@ $flag = 0;
 $eerror = "";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//something was posted
+	$q = "select max(`property_id`) as last_id from `property`";
+	$test = $con->query($q);
+	$property_id = (int)mysqli_fetch_assoc($test)["last_id"]+1;
+
 	$property_name = $_POST["property_name"];
-	$property_id = $_POST["property_id"];
+	// $property_id = $_POST["property_id"];
 	$description = $_POST["description"];
 	$city = $_POST["city"];
 	$address = $_POST["address"];
@@ -29,35 +33,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$flag = 1;
 	}
 	//property id
-	if (strlen($property_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $property_id)) {
-		$eproperty_id = "Property id should Alphanumeric with more than 3 characters.";
-		$flag = 1;
-	} else {
-		$q = "select count(*) as count from property where property_id = '" . $property_id . "' ";
-		$test = $con->query($q);
-		while ($row = mysqli_fetch_assoc($test)) {
-			$result[] = $row;
-		}
-		if ($result[0]['count']) {
-			$flag = 1;
-			$eproperty_id = "Property id already exists. Try something else.";
-		} else {
+	// if (strlen($property_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $property_id)) {
+	// 	$eproperty_id = "Property id should Alphanumeric with more than 3 characters.";
+	// 	$flag = 1;
+	// } else {
+	// 	$q = "select count(*) as count from property where property_id = '" . $property_id . "' ";
+	// 	$test = $con->query($q);
+	// 	while ($row = mysqli_fetch_assoc($test)) {
+	// 		$result[] = $row;
+	// 	}
+	// 	if ($result[0]['count']) {
+	// 		$flag = 1;
+	// 		$eproperty_id = "Property id already exists. Try something else.";
+	// 	}else{
 
 
-			print_r($_FILES);
-			$property_name = $_POST["property_name"];
-			$property_id = $_POST["property_id"];
-			$description = $_POST["description"];
-			$city = $_POST["city"];
-			$address = $_POST["address"];
-			$address_link = $_POST["address_link"];
-			$price = $_POST["price"];
-			$image1 = $property_id . "image1";
-			$image2 = $property_id . "image2";
-			$contact_number = $_POST["contact_number"];
-			$contact_email = $_POST["contact_email"];
+			// print_r($_FILES);
 			//images
-			$uploaddir = 'uploads/';
+			$uploaddir = '../uploads/';
 			$imgname = $property_id . "image1" . ".jpg";
 			$tempimgname = $_FILES['image1']['tmp_name'];
 			$uploadfile = $uploaddir . $imgname;
@@ -77,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				$flag = 1;
 				$eimage2 = "Something went wrong uploading the image";
 			}
-		}
-	}
+	// 	}
+	// }
 	//description
 	//address
 	//address_link
@@ -136,11 +129,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 															} ?>">
 			<p class="error"><?php echo $eproperty_name; ?></p>
 
-			<label class="">Property id</label>
-			<input type="text" name="property_id" value="<?php if ($flag) {
-																echo "$property_id";
-															} ?>">
-			<p class="error"><?php echo $eproperty_id; ?></p>
 
 			<label class="">Description</label>
 			<textarea name="description"><?php if ($flag) {

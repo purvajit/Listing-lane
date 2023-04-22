@@ -19,7 +19,7 @@
 						</div>
 					</div>
 				</a>
-			<?php } else{echo "<a href='search.php?search_str=", urlencode($city),  "'>view all</a>"; break;}}?>
+			<?php } else{echo "<a href='search.php?edit_id=", urlencode($city), "'><button>View All</button></a>"; break;}}?>
 
 		</section>
 	</div>
