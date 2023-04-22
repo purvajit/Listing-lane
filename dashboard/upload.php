@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//something was posted
 	$q = "select max(`property_id`) as last_id from `property`";
 	$test = $con->query($q);
-	$property_id = (int)mysqli_fetch_assoc($test)["last_id"]+1;
+	$property_id = (int)mysqli_fetch_assoc($test)["last_id"] + 1;
 
 	$property_name = $_POST["property_name"];
 	// $property_id = $_POST["property_id"];
@@ -48,28 +48,28 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	// 	}else{
 
 
-			// print_r($_FILES);
-			//images
-			$uploaddir = '../uploads/';
-			$imgname = $property_id . "image1" . ".jpg";
-			$tempimgname = $_FILES['image1']['tmp_name'];
-			$uploadfile = $uploaddir . $imgname;
-			$imgname2 = $property_id . "image2" . ".jpg";
-			$tempimgname2 = $_FILES['image2']['tmp_name'];
-			$uploadfile2 = $uploaddir . $imgname2;
+	// print_r($_FILES);
+	//images
+	$uploaddir = '../uploads/';
+	$imgname = $property_id . "image1" . ".jpg";
+	$tempimgname = $_FILES['image1']['tmp_name'];
+	$uploadfile = $uploaddir . $imgname;
+	$imgname2 = $property_id . "image2" . ".jpg";
+	$tempimgname2 = $_FILES['image2']['tmp_name'];
+	$uploadfile2 = $uploaddir . $imgname2;
 
-			if (move_uploaded_file($tempimgname, $uploadfile)) {
-				echo "File is valid, and was successfully uploaded.\n";
-			} else {
-				$flag = 1;
-				$eimage1 = "Something went wrong uploading the image";
-			}
-			if (move_uploaded_file($tempimgname2, $uploadfile2)) {
-				echo "File is valid, and was successfully uploaded.\n";
-			} else {
-				$flag = 1;
-				$eimage2 = "Something went wrong uploading the image";
-			}
+	if (move_uploaded_file($tempimgname, $uploadfile)) {
+		echo "File is valid, and was successfully uploaded.\n";
+	} else {
+		$flag = 1;
+		$eimage1 = "Something went wrong uploading the image";
+	}
+	if (move_uploaded_file($tempimgname2, $uploadfile2)) {
+		echo "File is valid, and was successfully uploaded.\n";
+	} else {
+		$flag = 1;
+		$eimage2 = "Something went wrong uploading the image";
+	}
 	// 	}
 	// }
 	//description
@@ -91,8 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$flag = 1;
 	}
 	if ($flag == 0) {
-		$query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$image1','$image2','$contact_number','$contact_email')";
-	
+		$query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$imgname','$imgname2','$contact_number','$contact_email')";
+
 		mysqli_query($con, $query);
 		unset($_FILES['image1']);
 		unset($_FILES['image2']);
