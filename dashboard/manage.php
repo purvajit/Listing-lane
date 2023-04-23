@@ -50,7 +50,7 @@ if (isset($user_data["username"])) {
             color: var(--colour1);
         }
         tr:nth-child(odd){
-            background-color: var(--colour2);
+            background-color: var(--colour5);
         }
 
         td,th {
@@ -146,7 +146,6 @@ if (isset($user_data["username"])) {
             } ?>
             </table>
         </div>
-        <?php include("../shared/footer.php") ?>
 
 </body>
 

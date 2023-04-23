@@ -146,6 +146,16 @@ if (isset($user_data["username"])) {
 		<link rel="stylesheet" type="text/css" href="../style.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<title>Edit</title>
+		<style>
+			form{
+			background-color: var(--colour5);
+			padding: 30px;
+			border-radius: 4px;
+		}
+		.submit{
+			margin: 10px 0px;
+		}
+		</style>
 	</head>
 
 	<body>

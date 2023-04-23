@@ -45,6 +45,7 @@ if (isset($user_data["username"])) {
             display: flex;
             flex-direction: row;
             justify-content: center;
+
         }
 
         table{
@@ -56,6 +57,7 @@ if (isset($user_data["username"])) {
         
         tr{
             color: var(--colour1);
+            height: 50px;
         }
         tr:nth-child(odd){
             background-color: var(--colour2);
@@ -144,7 +146,6 @@ if (isset($user_data["username"])) {
             } ?>
             </table>
         </div>
-        <?php include("../shared/footer.php") ?>
 
 </body>
 

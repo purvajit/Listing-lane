@@ -136,7 +136,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		.form_block {
 			margin-bottom: 2rem;
 		}
-
+		form{
+			background-color: var(--colour5);
+			padding: 30px;
+			border-radius: 4px;
+		}
 		label {
 			display: block;
 			font-weight: 600;

@@ -18,9 +18,15 @@
                 <div class="info">
                     <h1>Listing Lane</h1>
                     <h2>Your search ends here: Listing Lane connects you to your new home</h2>
-                    <p>Listing Lane is your go-to destination for all your real estate needs. Our user-friendly platform and comprehensive listings make finding your dream home a breeze.
-                        Our experienced real estate agents are here to guide you through every step of the process, whether you're buying or selling. Join the thousands of satisfied customers who have found their perfect home on Listing Lane.
-                        Start your search today and discover the home you've been dreaming of.</p>
+                    <p>Welcome to Listing Lane, your ultimate destination for all your property needs in India! We are a leading property listing website, dedicated to helping you find your dream property in the most hassle-free way possible.
+
+                        At Listing Lane, we understand that buying, selling, or renting a property can be a daunting task, especially in a country as vast and diverse as India. That's why we have created a user-friendly platform that brings together buyers, sellers, and renters in one place, making the process quick, easy, and convenient.
+
+                        Our website features a wide range of properties, including apartments, villas, townhouses, and commercial spaces, all located in some of the most sought-after areas of India. Our listings are updated regularly, so you can be sure that you are getting the latest and most accurate information on the properties available.
+
+                        Whether you are a first-time buyer, a seasoned investor, or a property owner looking to sell or rent out your property, Listing Lane is the perfect platform for you. Our experienced team of real estate professionals is always on hand to provide you with expert advice and guidance on every aspect of the property market in India.
+
+                        So why wait? Browse through our listings today and find your dream property in India with Listing Lane!</p>
                     <button>Explore Now</button>
                 </div>
             </div>

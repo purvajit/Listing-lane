@@ -114,6 +114,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	<link rel="stylesheet" type="text/css" href="../style.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Upload</title>
+	<style>
+		
+		form{
+			background-color: var(--colour5);
+			padding: 30px;
+			border-radius: 4px;
+			margin:30px;
+		}
+		.submit{
+			margin: 20px 0px;
+		}
+	</style>
 </head>
 
 <body>

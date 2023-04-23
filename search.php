@@ -54,8 +54,17 @@ if (!empty($_GET["search_str"])) {
 		input[type="submit"] {
 			width: 10%;
 		}
+
+		.properties{
+			display: grid;
+			grid-template-columns: repeat(3, 300px);
+			justify-content: space-evenly;
+			gap: 2rem;
+			padding: 30px;
+		}
 	</style>
 </head>
+
 <body>
 	<div class="container">
 

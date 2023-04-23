@@ -131,10 +131,10 @@ if (!empty($_GET["id"])) {
 
             <div class="line"></div>
             <div class="map">
-                <?php  echo $data["address_link"];?>
+                <?php echo $data["address_link"]; ?>
             </div>
             <style>
-                iframe{
+                iframe {
                     width: 1200px;
                     height: 400px;
                 }
@@ -155,6 +155,7 @@ if (!empty($_GET["id"])) {
         </div>
 
     </section>
+
     <?php include('./shared/footer.php') ?>
 </body>
 
