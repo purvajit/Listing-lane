@@ -7,28 +7,28 @@ $user_data = check_dashboard_admin($con);
 if (isset($user_data["username"])) {
     if (isset($_GET['dlt_id'])) {
         $dlt_id = $_GET['dlt_id'];
-        
-        $data=$dlt_id.'image1.jpg';
-        $dir = "../uploads/";    
-        $dirHandle = opendir($dir);    
-        while ($file = readdir($dirHandle)) {    
-            if($file==$data) {
-                unlink($dir."/".$file);//give correct path,
-            }
-        }    
-        closedir($dirHandle);
-        $data=$dlt_id.'image2.jpg';
-        $dir = "../uploads/";    
-        $dirHandle = opendir($dir);    
-        while ($file = readdir($dirHandle)) {    
-            if($file==$data) {
-                unlink($dir."/".$file);//give correct path,
-            }
-        }    
-        closedir($dirHandle);
-        
 
-        
+        $data = $dlt_id . 'image1.jpg';
+        $dir = "../uploads/";
+        $dirHandle = opendir($dir);
+        while ($file = readdir($dirHandle)) {
+            if ($file == $data) {
+                unlink($dir . "/" . $file); //give correct path,
+            }
+        }
+        closedir($dirHandle);
+        $data = $dlt_id . 'image2.jpg';
+        $dir = "../uploads/";
+        $dirHandle = opendir($dir);
+        while ($file = readdir($dirHandle)) {
+            if ($file == $data) {
+                unlink($dir . "/" . $file); //give correct path,
+            }
+        }
+        closedir($dirHandle);
+
+
+
         $delete = mysqli_query($con, "DELETE FROM `property` WHERE `property_id`='$dlt_id'");
         unset($_GET['dlt_id']);
         header("Location: manage.php");
@@ -164,7 +164,9 @@ if (isset($user_data["username"])) {
                         </td>
                         <td>
                             <?php echo "<a href='edit.php?edit_id=", urlencode($id), "'><button>Edit</button></a>"; ?>
-                            <?php echo "<a href='manage.php?dlt_id=", urlencode($id), "'><button>Delete</button></a>"; ?>
+
+
+                            <button onclick="onDelete(<?php echo $id ?>);">Delete</button>
                         </td>
                     </tr>
             <?php }
@@ -173,7 +175,14 @@ if (isset($user_data["username"])) {
             } ?>
             </table>
         </div>
-
+        <script>
+            function onDelete(id) {
+                const ans = confirm("Are you sure you want to delete?");
+                if (ans) {
+                    window.location.href = `manage.php?dlt_id=${id}`;
+                }
+            }
+        </script>
 </body>
 
 </html>
