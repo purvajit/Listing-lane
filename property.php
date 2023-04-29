@@ -40,7 +40,9 @@ if (!empty($_GET["id"])) {
             font-size: 1.25rem;
             color: var(--colour2);
         }
-
+        .property{
+            padding-inline: 5rem;
+        }
         .property-heading {
             font-size: 2rem;
             margin-bottom: 1rem;
@@ -121,7 +123,7 @@ if (!empty($_GET["id"])) {
 
         <div class="container">
 
-            <p class="added">Added 18 hours ago</p>
+            <p class="added"></p>
 
             <h1 class="property-heading">
                 <?php echo $data["property_name"] ?>

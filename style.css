@@ -38,7 +38,10 @@ button:focus {
   outline: 2px solid var(--colour1);
   outline-offset: 1px;
 }
+iframe{
+  width: min(600px, 100%);
 
+}
 
 body {
   background-color: var(--colour4);
