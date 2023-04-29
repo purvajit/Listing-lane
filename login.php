@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./style.css">
+	<script src="https://kit.fontawesome.com/7a1a8867fc.js" crossorigin="anonymous"></script>
 	<title>Login into your account | Listing Lane</title>
 	<style>
 		.error {
@@ -125,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		input[type="submit"] {
 			background-color: var(--colour2);
 			border: 0;
+			margin-bottom: 10px;
 		}
 
 		input[type="submit"]:hover,
@@ -135,9 +137,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 		.signup_tip {
 			margin-top: 0.5rem;
-			font-weight: 600;
+			font-weight: 300;
 			font-size: 1.05rem;
 			color: var(--colour1);
+		}
+		a{
+			font-weight: 600;
 		}
 	</style>
 </head>

@@ -7,6 +7,28 @@ $user_data = check_dashboard_admin($con);
 if (isset($user_data["username"])) {
     if (isset($_GET['dlt_id'])) {
         $dlt_id = $_GET['dlt_id'];
+        
+        $data=$dlt_id.'image1.jpg';
+        $dir = "../uploads/";    
+        $dirHandle = opendir($dir);    
+        while ($file = readdir($dirHandle)) {    
+            if($file==$data) {
+                unlink($dir."/".$file);//give correct path,
+            }
+        }    
+        closedir($dirHandle);
+        $data=$dlt_id.'image2.jpg';
+        $dir = "../uploads/";    
+        $dirHandle = opendir($dir);    
+        while ($file = readdir($dirHandle)) {    
+            if($file==$data) {
+                unlink($dir."/".$file);//give correct path,
+            }
+        }    
+        closedir($dirHandle);
+        
+
+        
         $delete = mysqli_query($con, "DELETE FROM `property` WHERE `property_id`='$dlt_id'");
         unset($_GET['dlt_id']);
         header("Location: manage.php");
@@ -39,22 +61,24 @@ if (isset($user_data["username"])) {
             justify-content: center;
         }
 
-        table{
+        table {
             width: 70%;
             border: 1px solid var(--colour1);
             margin: 50px;
             border-collapse: collapse;
         }
 
-        tr{
+        tr {
             color: var(--colour1);
         }
-        tr:nth-child(odd){
+
+        tr:nth-child(odd) {
             background-color: var(--colour5);
         }
 
-        td,th {
-            text-align:center;
+        td,
+        th {
+            text-align: center;
             border: 1px solid var(--colour1);
             padding: 0.5rem;
             text-align: center;
@@ -71,14 +95,17 @@ if (isset($user_data["username"])) {
             font-weight: 900;
             color: var(--colour1);
         }
-        button{
+
+        button {
             margin: 0px;
         }
-        img{
+
+        img {
             width: 100px;
             margin: 2px;
         }
-        .images{
+
+        .images {
             display: flex;
             flex-direction: column;
         }
@@ -90,9 +117,9 @@ if (isset($user_data["username"])) {
     <?php if (isset($user_data["username"])) { ?>
 
         <div class="container">
-                    <td>
-                                <?php echo "<a href='upload.php'><button>Add a new property</button></a>"; ?>
-                    </td>
+            <td>
+                <?php echo "<a href='upload.php'><button>Add a new property</button></a>"; ?>
+            </td>
         </div>
 
         <div class="box">
@@ -136,8 +163,8 @@ if (isset($user_data["username"])) {
                             <img src="/Innovative/uploads/<?php echo $row["image2"]; ?>" alt="">
                         </td>
                         <td>
-                                <?php echo "<a href='edit.php?edit_id=", urlencode($id), "'><button>Edit</button></a>"; ?>
-                                <?php echo "<a href='manage.php?dlt_id=", urlencode($id), "'><button>Delete</button></a>"; ?>
+                            <?php echo "<a href='edit.php?edit_id=", urlencode($id), "'><button>Edit</button></a>"; ?>
+                            <?php echo "<a href='manage.php?dlt_id=", urlencode($id), "'><button>Delete</button></a>"; ?>
                         </td>
                     </tr>
             <?php }

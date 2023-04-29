@@ -8,9 +8,9 @@
 			<i class="fa fa-envelope"></i><a href="mailto:">info@listinglanee.com</a>
 		</p>
 		<p>
-			<i class="fa-sharp fa-regular fa-location-dot"></i>
+		<i class="fa fa-solid fa-location-dot"></i>
 			<a>
-				123 Listing Lane, Faridabad, India
+				123 Listing Lane, Ahmedabad, India
 			</a>
 		</p>
 		<p>
@@ -22,7 +22,7 @@
 		<h3>Connect</h3>
 		<div class="links">
 			<a href="index.php"><i class="fa fa-google fa-2x"></i></a>
-			<a href="index.php"><i class="fa-brands fa-instagram fa-2x"></i></a>
+			<a href="index.php"><i class="fa fa-brands fa-instagram fa-2x"></i></a>
 			<a href="index.php"><i class="fa fa-brands fa-twitter fa-2x"></i></a>
 			<a href="index.php"><i class="fa fa-facebook-square fa-2x"></i></a>
 		</div>

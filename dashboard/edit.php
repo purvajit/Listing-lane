@@ -49,7 +49,7 @@ if (isset($user_data["username"])) {
 				$flag = 1;
 			} else {
 				$property_name = $_POST["property_name"];
-				$property_id = $_POST["property_id"];
+				$property_id = $edit_id;
 				$description = $_POST["description"];
 				$city = $_POST["city"];
 				$address = $_POST["address"];
@@ -86,20 +86,6 @@ if (isset($user_data["username"])) {
 					$flag = 1;
 				}
 				//property id
-				if (strlen($property_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $property_id)) {
-					$eproperty_id = "Property id should Alphanumeric with more than 3 characters.";
-					$flag = 1;
-				} else {
-					$q = "select count(*) as count from property where property_id = '" . $property_id . "' ";
-					$test = $con->query($q);
-					while ($row = mysqli_fetch_assoc($test)) {
-						$result[] = $row;
-					}
-					if ($result[0]['count']) {
-						$flag = 1;
-						$eproperty_id = "Property id already exists. Try something else.";
-					}
-				}
 				//description
 				//address
 				//address_link
@@ -165,6 +151,7 @@ if (isset($user_data["username"])) {
 		<div class="form_box">
 			<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" style='width:500px;' enctype='multipart/form-data'>
 				<h2 class="form_box heading">Edit</h2>
+				<h2 class="form_box heading"><?php echo $property_id;?></h2>
 				<p class="error"><?php echo $eerror; ?></p>
 
 				<label class="">Property name</label>
@@ -173,11 +160,6 @@ if (isset($user_data["username"])) {
 																} ?>">
 				<p class="error"><?php echo $eproperty_name; ?></p>
 
-				<label class="">Property id</label>
-				<input type="text" name="property_id" value="<?php if ($flag) {
-																	echo "$property_id";
-																} ?>">
-				<p class="error"><?php echo $eproperty_id; ?></p>
 
 				<label class="">Description</label>
 				<textarea name="description"><?php if ($flag) {
@@ -198,9 +180,9 @@ if (isset($user_data["username"])) {
 				<p class="error"><?php echo $eaddress; ?></p>
 
 				<label class="">Address link</label>
-				<input type="text" name="address_link" maxlength="200" value="<?php if ($flag) {
-																					echo "$address_link";
-																				} ?>">
+				<textarea name="address_link"><?php if ($flag) {
+																					echo htmlspecialchars( $address_link);
+																				} ?></textarea>
 				<p class="error"><?php echo $eaddress_link; ?></p>
 
 				<label class="">Price</label>
@@ -224,7 +206,7 @@ if (isset($user_data["username"])) {
 				<p class="error"><?php echo $econtact_number; ?></p>
 
 				<label class="">Dealers Email Id</label>
-				<input type="email" name="contact_email" maxlength="20" value="<?php if ($flag) {
+				<input type="email" name="contact_email"  value="<?php if ($flag) {
 																					echo "$contact_email";
 																				} ?>">
 				<p class="error"><?php echo $econtact_email; ?></p>

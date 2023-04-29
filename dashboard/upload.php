@@ -16,17 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$test = $con->query($q);
 	$property_id = (int)mysqli_fetch_assoc($test)["last_id"] + 1;
 
-	$property_name = $_POST["property_name"];
+	$property_name = test_data($_POST["property_name"]);
 	// $property_id = $_POST["property_id"];
-	$description = $_POST["description"];
-	$city = $_POST["city"];
-	$address = $_POST["address"];
+	$description = test_data($_POST["description"]);
+	$city = test_data($_POST["city"]);
+	$address = test_data($_POST["address"]);
 	$address_link = $_POST["address_link"];
-	$price = $_POST["price"];
+	$price = test_data($_POST["price"]);
 	$image1 = $property_id . "image1";
 	$image2 = $property_id . "image2";
-	$contact_number = $_POST["contact_number"];
-	$contact_email = $_POST["contact_email"];
+	$contact_number = test_data($_POST["contact_number"]);
+	$contact_email = test_data(($_POST["contact_email"]));
 	//property name
 	if (strlen($property_name) < 3 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $property_name)) {
 		$eproperty_name = "Invalid Name";
@@ -125,6 +125,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		.submit{
 			margin: 20px 0px;
 		}
+		a{
+			font-weight: 600;
+		}
+		
 	</style>
 </head>
 
@@ -146,6 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			<textarea name="description"><?php if ($flag) {
 												echo $description;
 											} ?></textarea>
+
+			
 			<p class="error"><?php echo $edescription; ?></p>
 
 			<label class="">City</label>
@@ -161,9 +167,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			<p class="error"><?php echo $eaddress; ?></p>
 
 			<label class="">Address link</label>
-			<input type="text" name="address_link" maxlength="200" value="<?php if ($flag) {
-																				echo "$address_link";
-																			} ?>">
+			<textarea name="address_link"><?php if ($flag) {
+																					echo $address_link;
+																				} ?></textarea>
 			<p class="error"><?php echo $eaddress_link; ?></p>
 
 			<label class="">Price</label>
@@ -187,7 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			<p class="error"><?php echo $econtact_number; ?></p>
 
 			<label class="">Dealers Email Id</label>
-			<input type="email" name="contact_email" maxlength="20" value="<?php if ($flag) {
+			<input type="email" name="contact_email" maxlength="50" value="<?php if ($flag) {
 																				echo "$contact_email";
 																			} ?>">
 			<p class="error"><?php echo $econtact_email; ?></p>

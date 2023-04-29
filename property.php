@@ -17,6 +17,8 @@ if (!empty($_GET["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Listing Lane</title>
     <link rel="stylesheet" href="./style.css">
+	<script src="https://kit.fontawesome.com/7a1a8867fc.js" crossorigin="anonymous"></script>
+
     <style>
         img {
             max-width: 100%;
@@ -125,7 +127,7 @@ if (!empty($_GET["id"])) {
                 <?php echo $data["property_name"] ?>
             </h1>
             <p class="address"><?php echo $data["address"] ?></p>
-            <p class="city"><?php echo $data["city"] ?> * <?php echo $data["city"] ?></p>
+            <p class="city"><?php echo $data["city"] ?></p>
 
             <p class="description"><?php echo $data["description"] ?></p>
 

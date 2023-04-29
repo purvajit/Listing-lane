@@ -87,6 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/7a1a8867fc.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="./style.css">
     <style>
         .error {
@@ -193,20 +195,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ?>
             <div class="form_block">
                 <label class="form_label">Name</label>
-                <input type="text" name="first_name" value="<?php echo $first_name; ?>" maxlength="20">
+                <input type="text" name="first_name" value="<?php if($flag==1){echo $first_name;} ?>" maxlength="20">
                 <p class="error"><?php echo $efirst_name; ?></p>
             </div>
 
             <div class="form_block">
                 <label class="form_label">User Id</label>
-                <input type="text" name="username" value="<?php echo $username; ?>" maxlength="20">
+                <input type="text" name="username" value="<?php if($flag==1){echo $username;} ?>" maxlength="20">
                 <p class="error"><?php echo $eusername; ?></p>
             </div>
 
 
             <div class="form_block">
                 <label class="form_label">Email Id</label>
-                <input type="email" name="email_id" value="<?php echo $email_id; ?>" maxlength="50">
+                <input type="email" name="email_id" value="<?php if($flag==1){echo $email_id;} ?>" maxlength="50">
                 <p class="error"><?php echo $eemail_id; ?></p>
 
             </div>
@@ -214,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
                 <label class="form_label">Message</label>
-                <textarea name="message"><?php echo $message; ?></textarea>
+                <textarea name="message"><?php if($flag==1){echo $message;}?></textarea>
                 <p class="error"><?php echo $emessage; ?></p>
             </div>
             <input type="submit" class="submit" value="Send Message" />

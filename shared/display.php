@@ -6,7 +6,7 @@
 		<h2><?php echo strtoupper($city); ?></h2>
 		<section class="properties container">
 			<?php foreach (fetch_by_city($con, $bycity["city"]) as $row) {
-				if ($count < 5) {
+				if ($count < 4) {
 					$count++;
 			?>
 					<a href="property.php?id=<?php echo $row["property_id"] ?>">
@@ -19,9 +19,9 @@
 							</div>
 						</div>
 					</a>
-			<?php } else {
-					echo "<div class='property-box' style='width: 20%;'><a class='viewall'href='search.php?search_str=", urlencode($city), "'><button>View All -></button></a></div>";
-					break;
+			<?php } else {?>
+					<div class='property-box' ><a class='viewall' href='search.php?search_str=<?php echo urlencode($city);?>'><button>View All <i class="fa-solid fa-arrow-right"></i></button></a></div>
+					<?php break;
 				}
 			} ?>
 			<style>
@@ -35,3 +35,4 @@
 		</section>
 	</div>
 <?php } ?>
+

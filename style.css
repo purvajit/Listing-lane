@@ -14,7 +14,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif !important;
+  font-family: "Inter", sans-serif;
 }
 
 html {
@@ -63,7 +63,7 @@ body {
 
 
 .container {
-  width: 90%;
+  width: 95%;
   margin-inline: auto !important;
 }
 
@@ -334,7 +334,7 @@ a:visited {
   justify-content: space-between;
   color: var(--colour1);
   padding: 0px;
-  margin: 30px;
+  margin: 20px 40px;
   border-radius: 5px;
 }
 
@@ -520,6 +520,10 @@ button,
 textarea {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+textarea{
+  height: 80px;
+}
+
 
 .heading {
   text-align: center;
@@ -549,7 +553,7 @@ label {
   margin-block: 0.5rem;
 }
 
-input {
+input,textarea {
   width: 100%;
   padding: 0.5rem;
   font-size: 1rem;
@@ -558,7 +562,7 @@ input {
 }
 
 input:hover,
-input:focus {
+input:focus,textarea:hover,textarea:hover{
   border-radius: 1px;
   outline: 2px solid var(--colour2);
 }

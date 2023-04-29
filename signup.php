@@ -175,9 +175,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 		.login_tip {
 			margin-top: 0.5rem;
-			font-weight: 600;
+			font-weight: 300;
 			font-size: 1.05rem;
 			color: var(--colour1);
+		}
+		a{
+			font-weight: 600;
 		}
 	</style>
 </head>
