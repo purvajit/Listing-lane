@@ -77,12 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 	if (!empty($_POST['password'])) {
 		$password = test_data($_POST['password']);
-		$password = password_hash($password, PASSWORD_DEFAULT);
 	} else {
 		$flag == 1;
 		$epassword = "Password is required";
 	}
 	if ($flag == 0) {
+		$password = password_hash($password, PASSWORD_DEFAULT);
 		$query = "insert into user (username, first_name, last_name, email_id, is_admin, is_active, password) values ('$username','$first_name','$last_name','$email_id', 0, 1, '$password')";
 		mysqli_query($con, $query) or die(mysqli_error($con));
 		header("Location: login.php");

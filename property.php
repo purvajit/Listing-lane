@@ -17,8 +17,8 @@ if (!empty($_GET["id"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Listing Lane</title>
     <link rel="stylesheet" href="./style.css">
-	<script src="https://kit.fontawesome.com/7a1a8867fc.js" crossorigin="anonymous"></script>
-
+    <script src="https://kit.fontawesome.com/7a1a8867fc.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
         img {
             max-width: 100%;
@@ -40,9 +40,11 @@ if (!empty($_GET["id"])) {
             font-size: 1.25rem;
             color: var(--colour2);
         }
-        .property{
+
+        .property {
             padding-inline: 5rem;
         }
+
         .property-heading {
             font-size: 2rem;
             margin-bottom: 1rem;
@@ -116,9 +118,26 @@ if (!empty($_GET["id"])) {
     <?php include('./shared/header.php') ?>
     <section class="property">
 
-        <div class="img-block">
-            <img src="./uploads/<?php echo $data["image1"] ?>" alt="">
-            <img src="./uploads/<?php echo $data["image2"] ?>" alt="">
+        <div class="d-flex justify-content-center" style="width:'100%'; background-color: var(--colour5)">
+
+            <div id="carouselExample" class="carousel slide " style="height: 800px; width:800px">
+                <div class="carousel-inner " style="height: 100%; width:'100%'">
+                    <div class="carousel-item active">
+                        <img src="./uploads/<?php echo $data["image1"] ?>" class="d-block w-100 img-thumbnail" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./uploads/<?php echo $data["image2"] ?>" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
 
         <div class="container">
@@ -161,6 +180,9 @@ if (!empty($_GET["id"])) {
     </section>
 
     <?php include('./shared/footer.php') ?>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 
 </html>

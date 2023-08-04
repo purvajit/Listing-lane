@@ -33,7 +33,6 @@ if (isset($user_data["username"])) {
         unset($_GET['dlt_id']);
         header("Location: manage.php");
     }
-
     $query = "select property_id, property_name, city, image1, image2 FROM property";
     $all_property = $con->query($query);
     $table = array();

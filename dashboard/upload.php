@@ -10,14 +10,16 @@ $property_name = $property_id = $description = $city = $address = $address_link 
 $eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
 $flag = 0;
 $eerror = "";
+
+
+//form submission
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//something was posted
+	
 	$q = "select max(`property_id`) as last_id from `property`";
 	$test = $con->query($q);
 	$property_id = (int)mysqli_fetch_assoc($test)["last_id"] + 1;
-
 	$property_name = test_data($_POST["property_name"]);
-	// $property_id = $_POST["property_id"];
 	$description = test_data($_POST["description"]);
 	$city = test_data($_POST["city"]);
 	$address = test_data($_POST["address"]);
@@ -32,20 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$eproperty_name = "Invalid Name";
 		$flag = 1;
 	}
-	//property id
-	// if (strlen($property_id) < 3 or !preg_match("/^([a-zA-Z0-9]+)$/", $property_id)) {
-	// 	$eproperty_id = "Property id should Alphanumeric with more than 3 characters.";
-	// 	$flag = 1;
-	// } else {
-	// 	$q = "select count(*) as count from property where property_id = '" . $property_id . "' ";
-	// 	$test = $con->query($q);
-	// 	while ($row = mysqli_fetch_assoc($test)) {
-	// 		$result[] = $row;
-	// 	}
-	// 	if ($result[0]['count']) {
-	// 		$flag = 1;
-	// 		$eproperty_id = "Property id already exists. Try something else.";
-	// 	}else{
 
 
 	// print_r($_FILES);
@@ -72,9 +60,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	}
 	// 	}
 	// }
+	if (strlen($city) < 2 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $city)) {
+		$ecity = "Invalid city";
+		$flag = 1;
+	}
 	//description
+	if (strlen($description) < 2 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $description)) {
+		$edescription = "Invalid description";
+		$flag = 1;
+	}
 	//address
+	if (strlen($address) < 2 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $address)) {
+		$eaddress = "Invalid address";
+		$flag = 1;
+	}
 	//address_link
+	if (strlen($address_link) < 2 ) {
+		$eaddress_link = "Invalid address link";
+		$flag = 1;
+	}
 	//price
 	if (strlen($price) < 2 or !preg_match("/^([0-9,]+)$/", $price)) {
 		$eprice = "Invalid price";

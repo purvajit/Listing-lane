@@ -3,6 +3,7 @@ session_start();
 include("../connection.php");
 include("../function.php"); //from function.php
 $user_data = check_dashboard_admin($con);
+
 if (isset($user_data["username"])) {
 	$property_name = $property_id = $description = $city = $address = $address_link = $price = $image1 = $image2 = $contact_number = $contact_email = "";
 	$eproperty_name = $eproperty_id = $edescription = $ecity = $eaddress = $eaddress_link = $eprice = $eimage1 = $eimage2 = $econtact_number = $econtact_email = "";
@@ -36,7 +37,7 @@ if (isset($user_data["username"])) {
 		//something was posted
 
 
-		if (empty($_POST["property_name"]) || empty($_POST["property_id"]) || empty($_POST["description"])  || empty($_POST["city"]) || empty($_POST["address"]) || empty($_POST["address_link"]) || empty($_POST["price"]) || empty($_FILES["image1"]) || empty($_FILES["image2"]) || empty($_POST["contact_number"]) || empty($_POST["contact_email"])) {
+		if (empty($_POST["property_name"]) || empty($_POST["description"])  || empty($_POST["city"]) || empty($_POST["address"]) || empty($_POST["address_link"]) || empty($_POST["price"]) || empty($_FILES["image1"]) || empty($_FILES["image2"]) || empty($_POST["contact_number"]) || empty($_POST["contact_email"])) {
 			$eerror = "All fields are required to be filled!";
 
 			$flag = 1;
@@ -44,7 +45,7 @@ if (isset($user_data["username"])) {
 			//something was posted
 
 
-			if (empty($_POST["property_name"]) || empty($_POST["property_id"]) || empty($_POST["description"])  || empty($_POST["city"]) || empty($_POST["address"]) || empty($_POST["address_link"]) || empty($_POST["price"]) || empty($_FILES["image1"]) || empty($_FILES["image2"]) || empty($_POST["contact_number"]) || empty($_POST["contact_email"])) {
+			if (empty($_POST["property_name"])  || empty($_POST["description"])  || empty($_POST["city"]) || empty($_POST["address"]) || empty($_POST["address_link"]) || empty($_POST["price"]) || empty($_FILES["image1"]) || empty($_FILES["image2"]) || empty($_POST["contact_number"]) || empty($_POST["contact_email"])) {
 				$eerror = "All fields are required to be filled!";
 				$flag = 1;
 			} else {
@@ -85,11 +86,25 @@ if (isset($user_data["username"])) {
 					$eproperty_name = "Invalid Name";
 					$flag = 1;
 				}
-				//property id
+				if (strlen($city) < 2 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $city)) {
+					$ecity = "Invalid city";
+					$flag = 1;
+				}
 				//description
+				if (strlen($description) < 2 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $description)) {
+					$edescription = "Invalid description";
+					$flag = 1;
+				}
 				//address
+				if (strlen($address) < 2 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $address)) {
+					$eaddress = "Invalid address";
+					$flag = 1;
+				}
 				//address_link
-				//price
+				if (strlen($address_link) < 2 or !preg_match("/^([a-zA-Z0-9' ]+)$/", $address_link)) {
+					$eaddress_link = "Invalid address link";
+					$flag = 1;
+				}
 				if (strlen($price) < 2 or !preg_match("/^([0-9,]+)$/", $price)) {
 					$eprice = "Invalid price";
 					$flag = 1;
@@ -106,13 +121,12 @@ if (isset($user_data["username"])) {
 				}
 			}
 			if ($flag == 0) {
-				// $query = "update property set `property_name`='$property_name',`description`='$description',`city`='$city',`address`='$address',`address_link`='$address_link',`price`='$price',`image1`='$image1',`image2`='$image2',`contact_number`='$contact_number',`contact_email`='$contact_email'";
-				$query = "update property set `property_name`='$property_name',`description`='$description',`city`='$city',`address`='$address',`address_link`='$address_link',`price`='$price',`contact_number`='$contact_number',`contact_email`='$contact_email'";
+				$query = "update property set `property_name`='$property_name',`description`='$description',`city`='$city',`address`='$address',`address_link`='$address_link',`price`='$price',`contact_number`='$contact_number',`contact_email`='$contact_email' where `property_id`='$edit_id'";
 				// $query = "insert into property (property_id,property_name,description,city,address,address_link,price,image1,image2,contact_number,contact_email) values ('$property_id','$property_name','$description','$city','$address','$address_link','$price','$image1','$image2','$contact_number','$contact_email')";
 
 				mysqli_query($con, $query);
-				// unset($_FILES['image1']);
-				// unset($_FILES['image2']);
+				unset($_FILES['image1']);
+				unset($_FILES['image2']);
 				header("Location: upload.php");
 				die;
 			}
